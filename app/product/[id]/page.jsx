@@ -28,115 +28,129 @@ const Product = () => {
         fetchProductData();
     }, [id, products.length])
 
-    return productData ? (<>
-        <Navbar />
-        <div className="px-6 md:px-16 lg:px-32 pt-14 space-y-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-                <div className="px-5 lg:px-16 xl:px-20">
-                    <div className="rounded-lg overflow-hidden bg-gray-500/10 mb-4">
-                        <Image
-                            src={mainImage || productData.image[0]}
-                            alt="alt"
-                            className="w-full h-auto object-cover mix-blend-multiply"
-                            width={1280}
-                            height={720}
-                        />
-                    </div>
-
-                    <div className="grid grid-cols-4 gap-4">
-                        {productData.image.map((image, index) => (
-                            <div
-                                key={index}
-                                onClick={() => setMainImage(image)}
-                                className="cursor-pointer rounded-lg overflow-hidden bg-gray-500/10"
-                            >
-                                <Image
-                                    src={image}
-                                    alt="alt"
-                                    className="w-full h-auto object-cover mix-blend-multiply"
-                                    width={1280}
-                                    height={720}
-                                />
-                            </div>
-
-                        ))}
-                    </div>
-                </div>
-
-                <div className="flex flex-col">
-                    <h1 className="text-3xl font-medium text-gray-800/90 mb-4">
-                        {productData.name}
-                    </h1>
-                    <div className="flex items-center gap-2">
-                        <div className="flex items-center gap-0.5">
-                            <Image className="h-4 w-4" src={assets.star_icon} alt="star_icon" />
-                            <Image className="h-4 w-4" src={assets.star_icon} alt="star_icon" />
-                            <Image className="h-4 w-4" src={assets.star_icon} alt="star_icon" />
-                            <Image className="h-4 w-4" src={assets.star_icon} alt="star_icon" />
+    return productData ? (
+        <div className="bg-black min-h-screen">
+            <Navbar />
+            <div className="px-6 md:px-16 lg:px-32 pt-14 space-y-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+                    <div className="px-5 lg:px-16 xl:px-20">
+                        <div className="overflow-hidden bg-black mb-4 border border-gray-800 hover:border-gray-600 transition-colors duration-300">
                             <Image
-                                className="h-4 w-4"
-                                src={assets.star_dull_icon}
-                                alt="star_dull_icon"
+                                src={mainImage || productData.image[0]}
+                                alt={productData.name}
+                                className="w-full h-auto object-cover"
+                                width={1280}
+                                height={720}
                             />
                         </div>
-                        <p>(4.5)</p>
-                    </div>
-                    <p className="text-gray-600 mt-3">
-                        {productData.description}
-                    </p>
-                    <p className="text-3xl font-medium mt-6">
-                        ${productData.offerPrice}
-                        <span className="text-base font-normal text-gray-800/60 line-through ml-2">
-                            ${productData.price}
-                        </span>
-                    </p>
-                    <hr className="bg-gray-600 my-6" />
-                    <div className="overflow-x-auto">
-                        <table className="table-auto border-collapse w-full max-w-72">
-                            <tbody>
-                                <tr>
-                                    <td className="text-gray-600 font-medium">Brand</td>
-                                    <td className="text-gray-800/50 ">Generic</td>
-                                </tr>
-                                <tr>
-                                    <td className="text-gray-600 font-medium">Color</td>
-                                    <td className="text-gray-800/50 ">Multi</td>
-                                </tr>
-                                <tr>
-                                    <td className="text-gray-600 font-medium">Category</td>
-                                    <td className="text-gray-800/50">
-                                        {productData.category}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+
+                        <div className="grid grid-cols-4 gap-3">
+                            {productData.image.map((image, index) => (
+                                <div
+                                    key={index}
+                                    onClick={() => setMainImage(image)}
+                                    className={`cursor-pointer overflow-hidden bg-black border transition-all duration-300 ${
+                                        mainImage === image || (!mainImage && index === 0)
+                                            ? 'border-white'
+                                            : 'border-gray-800 hover:border-gray-600'
+                                    }`}
+                                >
+                                    <Image
+                                        src={image}
+                                        alt={`${productData.name} view ${index + 1}`}
+                                        className="w-full h-auto object-cover"
+                                        width={1280}
+                                        height={720}
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
-                    <div className="flex items-center mt-10 gap-4">
-                        <button onClick={() => addToCart(productData._id)} className="w-full py-3.5 bg-gray-100 text-gray-800/80 hover:bg-gray-200 transition">
-                            Add to Cart
-                        </button>
-                        <button onClick={() => { addToCart(productData._id); router.push('/cart') }} className="w-full py-3.5 bg-orange-500 text-white hover:bg-orange-600 transition">
-                            Buy now
-                        </button>
+                    <div className="flex flex-col text-white">
+                        <h1 className="text-3xl md:text-4xl font-bold tracking-wide uppercase mb-6">
+                            {productData.name}
+                        </h1>
+                        <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-0.5">
+                                <Image className="h-4 w-4 brightness-0 invert" src={assets.star_icon} alt="star_icon" width={16} height={16} />
+                                <Image className="h-4 w-4 brightness-0 invert" src={assets.star_icon} alt="star_icon" width={16} height={16} />
+                                <Image className="h-4 w-4 brightness-0 invert" src={assets.star_icon} alt="star_icon" width={16} height={16} />
+                                <Image className="h-4 w-4 brightness-0 invert" src={assets.star_icon} alt="star_icon" width={16} height={16} />
+                                <Image
+                                    className="h-4 w-4 brightness-0 invert opacity-40"
+                                    src={assets.star_dull_icon}
+                                    alt="star_dull_icon"
+                                    width={16}
+                                    height={16}
+                                />
+                            </div>
+                            <p className="text-gray-300">(4.5)</p>
+                        </div>
+                        <p className="text-gray-400 mt-5 leading-relaxed text-sm md:text-base">
+                            {productData.description}
+                        </p>
+                        <p className="text-4xl font-bold mt-8 tracking-wide">
+                            ${productData.offerPrice}
+                            <span className="text-lg font-normal text-gray-500 line-through ml-3">
+                                ${productData.price}
+                            </span>
+                        </p>
+                        <hr className="border-gray-800 my-8" />
+                        <div className="overflow-x-auto">
+                            <table className="table-auto border-collapse w-full max-w-md">
+                                <tbody className="space-y-2">
+                                    <tr className="border-b border-gray-800">
+                                        <td className="text-gray-400 font-medium py-3 pr-8 uppercase tracking-wider text-sm">Brand</td>
+                                        <td className="text-white py-3">Generic</td>
+                                    </tr>
+                                    <tr className="border-b border-gray-800">
+                                        <td className="text-gray-400 font-medium py-3 pr-8 uppercase tracking-wider text-sm">Color</td>
+                                        <td className="text-white py-3">Multi</td>
+                                    </tr>
+                                    <tr className="border-b border-gray-800">
+                                        <td className="text-gray-400 font-medium py-3 pr-8 uppercase tracking-wider text-sm">Category</td>
+                                        <td className="text-white py-3">
+                                            {productData.category}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div className="flex items-center mt-12 gap-4">
+                            <button 
+                                onClick={() => addToCart(productData._id)} 
+                                className="w-full py-4 bg-transparent border-2 border-white text-white font-semibold uppercase tracking-wider text-sm hover:bg-white hover:text-black transition-all duration-300"
+                            >
+                                Add to Cart
+                            </button>
+                            <button 
+                                onClick={() => { addToCart(productData._id); router.push('/cart') }} 
+                                className="w-full py-4 bg-white text-black font-semibold uppercase tracking-wider text-sm hover:bg-gray-200 transition-all duration-300"
+                            >
+                                Buy Now
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="flex flex-col items-center">
-                <div className="flex flex-col items-center mb-4 mt-16">
-                    <p className="text-3xl font-medium">Featured <span className="font-medium text-orange-600">Products</span></p>
-                    <div className="w-28 h-0.5 bg-orange-600 mt-2"></div>
+                <div className="flex flex-col items-center border-t border-gray-800 pt-16">
+                    <div className="flex flex-col items-center mb-4">
+                        <h2 className="text-3xl md:text-4xl font-bold tracking-wide uppercase text-white">
+                            Featured <span className="font-bold">Products</span>
+                        </h2>
+                        <div className="w-32 h-1 bg-white mt-4"></div>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8 mt-12 pb-14 w-full">
+                        {products.slice(0, 5).map((product, index) => <ProductCard key={index} product={product} />)}
+                    </div>
+                    <button className="px-10 py-3 mb-16 border-2 border-white text-white font-semibold uppercase tracking-wider text-sm hover:bg-white hover:text-black transition-all duration-300">
+                        See More
+                    </button>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-6 pb-14 w-full">
-                    {products.slice(0, 5).map((product, index) => <ProductCard key={index} product={product} />)}
-                </div>
-                <button className="px-8 py-2 mb-16 border rounded text-gray-500/70 hover:bg-slate-50/90 transition">
-                    See more
-                </button>
             </div>
+            <Footer />
         </div>
-        <Footer />
-    </>
     ) : <Loading />
 };
 

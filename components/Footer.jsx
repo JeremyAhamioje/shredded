@@ -4,51 +4,63 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer>
-      <div className="flex flex-col md:flex-row items-start justify-center px-6 md:px-16 lg:px-32 gap-10 py-14 border-b border-gray-500/30 text-gray-500">
-        <div className="w-4/5">
-          <Image className="w-28 md:w-32" src={assets.logo} alt="logo" />
-          <p className="mt-6 text-sm">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
+    <footer className="bg-black border-t border-gray-800 mt-20">
+      <div className="flex md:flex-row flex-col-reverse items-center justify-between w-full px-6 md:px-16 lg:px-32 py-8 md:py-10">
+        <div className="flex items-center gap-4 md:gap-6">
+          <Image 
+            className="hidden md:block w-32 md:w-40 brightness-0 invert" 
+            src="https://res.cloudinary.com/dz6kxumoo/image/upload/v1769556059/WhatsApp_Image_2026-01-25_at_7.50.30_PM-removebg-preview_hgpu4b.png" 
+            alt="Shredded logo"
+            width={160}
+            height={60}
+          />
+          <div className="hidden md:block h-8 w-px bg-gray-700"></div>
+          <p className="py-4 text-center text-xs md:text-sm text-gray-400 tracking-wide">
+            Copyright 2026 © Shredded. All Rights Reserved.
           </p>
         </div>
-
-        <div className="w-1/2 flex items-center justify-start md:justify-center">
-          <div>
-            <h2 className="font-medium text-gray-900 mb-5">Company</h2>
-            <ul className="text-sm space-y-2">
-              <li>
-                <a className="hover:underline transition" href="#">Home</a>
-              </li>
-              <li>
-                <a className="hover:underline transition" href="#">About us</a>
-              </li>
-              <li>
-                <a className="hover:underline transition" href="#">Contact us</a>
-              </li>
-              <li>
-                <a className="hover:underline transition" href="#">Privacy policy</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="w-1/2 flex items-start justify-start md:justify-center">
-          <div>
-            <h2 className="font-medium text-gray-900 mb-5">Get in touch</h2>
-            <div className="text-sm space-y-2">
-              <p>+1-234-567-890</p>
-              <p>contact@greatstack.dev</p>
-            </div>
-          </div>
+        <div className="flex items-center gap-5 mb-4 md:mb-0">
+          <a 
+            href="#" 
+            className="hover:opacity-70 transition-opacity duration-300"
+            aria-label="Facebook"
+          >
+            <Image 
+              className="w-6 h-6 brightness-0 invert" 
+              src={assets.facebook_icon} 
+              alt="facebook_icon"
+              width={24}
+              height={24}
+            />
+          </a>
+          <a 
+            href="#" 
+            className="hover:opacity-70 transition-opacity duration-300"
+            aria-label="Twitter"
+          >
+            <Image 
+              className="w-6 h-6 brightness-0 invert" 
+              src={assets.twitter_icon} 
+              alt="twitter_icon"
+              width={24}
+              height={24}
+            />
+          </a>
+          <a 
+            href="#" 
+            className="hover:opacity-70 transition-opacity duration-300"
+            aria-label="Instagram"
+          >
+            <Image 
+              className="w-6 h-6 brightness-0 invert" 
+              src={assets.instagram_icon} 
+              alt="instagram_icon"
+              width={24}
+              height={24}
+            />
+          </a>
         </div>
       </div>
-      <p className="py-4 text-center text-xs md:text-sm">
-        Copyright 2025 © GreatStack.dev All Right Reserved.
-      </p>
     </footer>
   );
 };

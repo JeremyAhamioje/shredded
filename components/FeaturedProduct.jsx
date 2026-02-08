@@ -1,52 +1,66 @@
 import React from "react";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
-
+import Link from "next/link";
 const products = [
   {
     id: 1,
-    image: assets.girl_with_headphone_image,
-    title: "Unparalleled Sound",
-    description: "Experience crystal-clear audio with premium headphones.",
+    image: "https://res.cloudinary.com/dz6kxumoo/image/upload/v1769721795/Gemini_Generated_Image_6guo1d6guo1d6guo_rvpaf1.png",
+    title: "Forge Your Strength",
+    description: "Premium athletic wear designed for warriors who push beyond limits.",
   },
   {
     id: 2,
-    image: assets.girl_with_earphone_image,
-    title: "Stay Connected",
-    description: "Compact and stylish earphones for every occasion.",
+    image: "https://res.cloudinary.com/dz6kxumoo/image/upload/v1769724056/Gemini_Generated_Image_u8v12eu8v12eu8v1_u420fn.png",
+    title: "Embrace The Darkness",
+    description: "Bold designs that reflect your inner power and uncompromising style.",
   },
   {
     id: 3,
-    image: assets.boy_with_laptop_image,
-    title: "Power in Every Pixel",
-    description: "Shop the latest laptops for work, gaming, and more.",
+    image: "https://res.cloudinary.com/dz6kxumoo/image/upload/v1769723839/Gemini_Generated_Image_a4j1ova4j1ova4j1_1_qa9s6k.png",
+    title: "Unleash Your Legacy",
+    description: "Exclusive collections for those who dare to stand out and dominate.",
   },
 ];
 
 const FeaturedProduct = () => {
   return (
-    <div className="mt-14">
-      <div className="flex flex-col items-center">
-        <p className="text-3xl font-medium">Featured Products</p>
-        <div className="w-28 h-0.5 bg-orange-600 mt-2"></div>
+    <div className="mt-20 md:mt-28">
+      <div className="flex flex-col items-center border-b border-gray-800 pb-6">
+        <h2 className="text-3xl md:text-4xl font-bold tracking-wide uppercase text-white">
+          Featured Products
+        </h2>
+        <div className="w-32 h-1 bg-white mt-4"></div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-14 mt-12 md:px-14 px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-12 md:px-0">
         {products.map(({ id, image, title, description }) => (
-          <div key={id} className="relative group">
-            <Image
-              src={image}
-              alt={title}
-              className="group-hover:brightness-75 transition duration-300 w-full h-auto object-cover"
-            />
-            <div className="group-hover:-translate-y-4 transition duration-300 absolute bottom-8 left-8 text-white space-y-2">
-              <p className="font-medium text-xl lg:text-2xl">{title}</p>
-              <p className="text-sm lg:text-base leading-5 max-w-60">
+          <div key={id} className="relative group overflow-hidden bg-black border border-gray-800 hover:border-gray-600 transition-all duration-300">
+            <div className="relative h-[400px] md:h-[500px] overflow-hidden">
+              <Image
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                width={800}
+                height={1000}
+                priority={id === 1}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
+            </div>
+            
+            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white transform group-hover:-translate-y-2 transition-transform duration-300">
+              <h3 className="font-bold text-xl md:text-2xl uppercase tracking-wide mb-3">
+                {title}
+              </h3>
+              <p className="text-sm md:text-base text-gray-300 leading-relaxed mb-5 max-w-sm">
                 {description}
               </p>
-              <button className="flex items-center gap-1.5 bg-orange-600 px-4 py-2 rounded">
-                Buy now <Image className="h-3 w-3" src={assets.redirect_icon} alt="Redirect Icon" />
-              </button>
+              <Link href="/all-products">
+                <button className="flex items-center gap-2 bg-white text-black px-6 py-2.5 font-semibold uppercase tracking-wider text-sm hover:bg-gray-200 transition-all duration-300 group/button">
+                  Shop Now 
+                  <span className="group-hover/button:translate-x-1 transition-transform">→</span>
+                </button>
+              </Link>
             </div>
           </div>
         ))}
@@ -54,5 +68,6 @@ const FeaturedProduct = () => {
     </div>
   );
 };
+
 
 export default FeaturedProduct;
