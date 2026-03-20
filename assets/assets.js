@@ -10,6 +10,7 @@ import twitter_icon from "./twitter_icon.svg";
 import box_icon from "./box_icon.svg";
 import product_list_icon from "./product_list_icon.svg";
 import menu_icon from "./menu_icon.svg";
+import bag_icon from "./bag_icon.svg";
 import arrow_icon from "./arrow_icon.svg";
 import increase_arrow from "./increase_arrow.svg";
 import decrease_arrow from "./decrease_arrow.svg";
@@ -20,6 +21,7 @@ import heart_icon from "./heart_icon.svg";
 import star_icon from "./star_icon.svg";
 import redirect_icon from "./redirect_icon.svg";
 import star_dull_icon from "./star_dull_icon.svg";
+import shop_icon from "./shop_icon.svg";
 import header_headphone_image from "./header_headphone_image.png";
 import header_playstation_image from "./header_playstation_image.png";
 import header_macbook_image from "./header_macbook_image.png";
@@ -61,6 +63,7 @@ export const assets = {
   product_list_icon,
   menu_icon,
   arrow_icon,
+  bag_icon,
   increase_arrow,
   decrease_arrow,
   arrow_right_icon_colored,
@@ -69,6 +72,7 @@ export const assets = {
   heart_icon,
   star_icon,
   redirect_icon,
+  shop_icon,
   star_dull_icon,
   header_headphone_image,
   header_playstation_image,
