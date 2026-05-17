@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\jenni\\\\Downloads\\\\quickcart\" -Force)",
+      "Bash(Select-Object Name)",
+      "PowerShell(ls -R \"c:\\\\Users\\\\jenni\\\\Downloads\\\\quickcart\" -Depth 3)",
+      "PowerShell(Get-ChildItem -Path \"c:\\\\Users\\\\jenni\\\\Downloads\\\\quickcart\" -Force | Where-Object { -not $_.Name.StartsWith\\('.'\\) -and $_.Name -ne 'node_modules' } | Select-Object -ExpandProperty Name)",
+      "Bash(git config *)"
+    ]
+  }
+}
