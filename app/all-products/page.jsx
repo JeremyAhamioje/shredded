@@ -1,5 +1,5 @@
 'use client'
-import ProductCard from "@/components/ProductCard";
+import PopularProductCard from "@/components/PopularProductCard";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useAppContext } from "@/context/AppContext";
@@ -22,7 +22,7 @@ const AllProducts = () => {
                     </p>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8 mt-12 pb-20 w-full">
-                    {products.map((product, index) => <ProductCard key={index} product={product} />)}
+                    {products.map((product) => <PopularProductCard key={product._id} product={product} />)}
                 </div>
             </div>
             <Footer />

@@ -1,0 +1,180 @@
+{
+  "_comment": "Hand-matched catalog for the Shredded New Drop. Classified visually from the raw Gemini filenames (no renaming needed). uploadNewDrop.mjs reads this, uploads each referenced file to Cloudinary, and regenerates assets/newDrop.js. Angles: front rests, back/side revealed on hover.",
+  "meta": {
+    "title": "New Drop",
+    "tagline": "SS26 — Shredded",
+    "blurb": "Engineered fits, shot in the round. Hover any piece to see the back."
+  },
+  "products": [
+    {
+      "slug": "shredded-hoodie",
+      "name": "Shredded Pullover Hoodie",
+      "description": "Heavyweight raglan hoodie with the tattoo-script chest print.",
+      "price": 120,
+      "offerPrice": 95,
+      "colorways": [
+        {
+          "name": "Black",
+          "hex": "#141414",
+          "angles": {
+            "front": "Gemini_Generated_Image_bru9ccbru9ccbru9__2_-removebg-preview.png",
+            "back": "Gemini_Generated_Image_bru9ccbru9ccbru9-removebg-preview.png"
+          }
+        },
+        {
+          "name": "White",
+          "hex": "#e9e6df",
+          "angles": {
+            "front": "Gemini_Generated_Image_2l1h5e2l1h5e2l1h__2_-removebg-preview.png",
+            "side": "Gemini_Generated_Image_2l1h5e2l1h5e2l1h__1_-removebg-preview.png",
+            "back": "Gemini_Generated_Image_2l1h5e2l1h5e2l1h-removebg-preview.png"
+          }
+        },
+        {
+          "name": "Crimson",
+          "hex": "#8f1f24",
+          "angles": {
+            "front": "Gemini_Generated_Image_d5unx8d5unx8d5un__1_-removebg-preview.png",
+            "back": "Gemini_Generated_Image_d5unx8d5unx8d5un-removebg-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "oversized-tee",
+      "name": "Oversized Shredded Tee",
+      "description": "Boxy drop-shoulder tee with the storm-script graphic.",
+      "price": 55,
+      "offerPrice": 42,
+      "colorways": [
+        {
+          "name": "Black",
+          "hex": "#141414",
+          "angles": {
+            "front": "Gemini_Generated_Image_ywhch9ywhch9ywhc__2_-removebg-preview.png",
+            "side": "Gemini_Generated_Image_ywhch9ywhch9ywhc__1_-removebg-preview.png",
+            "back": "Gemini_Generated_Image_ywhch9ywhch9ywhc-removebg-preview.png"
+          }
+        },
+        {
+          "name": "White",
+          "hex": "#e9e6df",
+          "angles": {
+            "front": "Gemini_Generated_Image_odmq19odmq19odmq__2_-removebg-preview.png",
+            "side": "Gemini_Generated_Image_odmq19odmq19odmq__1_-removebg-preview.png",
+            "back": "Gemini_Generated_Image_odmq19odmq19odmq-removebg-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "compression-longsleeve",
+      "name": "Compression Long Sleeve",
+      "description": "Second-skin long-sleeve base layer with bonded seams.",
+      "price": 70,
+      "offerPrice": 58,
+      "colorways": [
+        {
+          "name": "White",
+          "hex": "#e9e6df",
+          "angles": {
+            "front": "Gemini_Generated_Image_7jifob7jifob7jif__2_-removebg-preview.png",
+            "side": "Gemini_Generated_Image_7jifob7jifob7jif__1_-removebg-preview.png",
+            "back": "Gemini_Generated_Image_7jifob7jifob7jif-removebg-preview.png"
+          }
+        },
+        {
+          "name": "Black",
+          "hex": "#141414",
+          "angles": {
+            "front": "Gemini_Generated_Image_ve43o1ve43o1ve43-removebg-preview (2).png",
+            "side": "Gemini_Generated_Image_lqjgovlqjgovlqjg__1_-removebg-preview.png"
+          }
+        },
+        {
+          "name": "Crimson",
+          "hex": "#8f1f24",
+          "angles": {
+            "front": "Gemini_Generated_Image_wy6p3qwy6p3qwy6p__1_-removebg-preview.png",
+            "side": "Gemini_Generated_Image_wy6p3qwy6p3qwy6p-removebg-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "compression-tee",
+      "name": "Compression Tee",
+      "description": "Fitted short-sleeve compression tee, mock-neck cut.",
+      "price": 48,
+      "offerPrice": 38,
+      "colorways": [
+        {
+          "name": "Onyx",
+          "hex": "#141414",
+          "angles": {
+            "front": "Gemini_Generated_Image_sk8tljsk8tljsk8t-removebg-preview.png",
+            "back": "Gemini_Generated_Image_sk8tljsk8tljsk8t__1_-removebg-preview.png"
+          }
+        },
+        {
+          "name": "Storm",
+          "hex": "#1c2733",
+          "angles": {
+            "front": "Gemini_Generated_Image_xu9vp5xu9vp5xu9v__1_-removebg-preview.png",
+            "side": "Gemini_Generated_Image_ve6s69ve6s69ve6s__1_-removebg-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "shredded-joggers",
+      "name": "Shredded Joggers",
+      "description": "Tapered fleece joggers with zip cuffs and thigh script.",
+      "price": 80,
+      "offerPrice": 65,
+      "colorways": [
+        {
+          "name": "Black",
+          "hex": "#141414",
+          "angles": {
+            "front": "Gemini_Generated_Image_i1nx56i1nx56i1nx__1_-removebg-preview.png",
+            "side": "Gemini_Generated_Image_i1nx56i1nx56i1nx-removebg-preview.png"
+          }
+        },
+        {
+          "name": "Maroon",
+          "hex": "#5c1418",
+          "angles": {
+            "front": "Gemini_Generated_Image_2f6hrl2f6hrl2f6h__1_-removebg-preview.png",
+            "side": "Gemini_Generated_Image_2f6hrl2f6hrl2f6h-removebg-preview.png"
+          }
+        },
+        {
+          "name": "Bone",
+          "hex": "#e9e6df",
+          "angles": {
+            "front": "aa049948-31c2-4cf9-8609-a646d5601149_removalai_preview.png",
+            "side": "Gemini_Generated_Image_lnq4galnq4galnq4-removebg-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "quarter-zip-longsleeve",
+      "name": "Quarter-Zip Long Sleeve",
+      "description": "Quarter-zip training top with tattoo-sleeve detailing.",
+      "price": 90,
+      "offerPrice": 75,
+      "colorways": [
+        {
+          "name": "Crimson",
+          "hex": "#8f1f24",
+          "angles": {
+            "front": "Gemini_Generated_Image_3tzdvi3tzdvi3tzd__1_-removebg-preview.png",
+            "side": "Gemini_Generated_Image_3tzdvi3tzdvi3tzd-removebg-preview.png"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "title": "New Drop",
+    "tagline": "SS26 — First Release",
+    "blurb": "Engineered fits, shot in the round. Hover any piece to see the back."
+  },
+  "products": {
+    "shadow-compression-tee": {
+      "order": 1,
+      "name": "Shadow Compression Tee",
+      "description": "Second-skin compression knit with laser-bonded seams.",
+      "price": 68,
+      "offerPrice": 55,
+      "colorways": {
+        "onyx": { "name": "Onyx", "hex": "#161616" },
+        "bone": { "name": "Bone", "hex": "#d8d2c6" },
+        "ember": { "name": "Ember", "hex": "#b3402a" }
+      }
+    },
+    "apex-training-hoodie": {
+      "order": 2,
+      "name": "Apex Training Hoodie",
+      "description": "Heavyweight fleece, tapered cut, gusseted hood.",
+      "price": 120,
+      "offerPrice": 98,
+      "colorways": {
+        "slate": { "name": "Slate", "hex": "#3b4149" },
+        "moss": { "name": "Moss", "hex": "#4c5237" }
+      }
+    }
+  }
+}

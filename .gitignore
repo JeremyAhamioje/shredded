@@ -29,3 +29,9 @@ yarn-error.log*
 # misc
 .DS_Store
 *.pem
+
+# new-drop staging images (uploaded to Cloudinary; keep README + manifest)
+newdrop-src/*.png
+newdrop-src/*.webp
+newdrop-src/*.jpg
+newdrop-src/*.jpeg

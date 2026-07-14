@@ -33,6 +33,12 @@ const Navbar = () => {
           Home
         </Link>
         <Link
+          href="/new-drop"
+          className="text-xs font-medium tracking-wider uppercase text-white hover:text-gray-400 transition-colors duration-300"
+        >
+          New Drop
+        </Link>
+        <Link
           href="/all-products"
           className="text-xs font-medium tracking-wider uppercase hover:text-gray-400 transition-colors duration-300"
         >
