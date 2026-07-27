@@ -1,4 +1,6 @@
 'use client';
+import { useMemo } from 'react';
+import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WebGLCycleCard from './WebGLCycleCard';
@@ -6,11 +8,20 @@ import { trending } from '@/assets/photoshoot';
 import { useAppContext } from '@/context/AppContext';
 
 // Isolated per-gender collection page — renders the studio-shoot products for
-// one gender in the WebGL cycle-on-hover cards. (Per-product checkout pages are
-// a later task; these are the catalog/showcase pages for now.)
+// one gender in the WebGL cycle-on-hover cards. Each card routes to its seeded
+// DB product (product page -> cart -> checkout), matched by "<name> - <tag>".
 export default function ShopCollection({ gender, title }) {
-  const { currency } = useAppContext();
+  const { currency, products } = useAppContext();
   const items = trending.filter((p) => p.gender === gender);
+  const idByName = useMemo(() => {
+    const m = {};
+    (products || []).forEach((d) => { m[d.name] = d._id; });
+    return m;
+  }, [products]);
+  const hrefFor = (p) => {
+    const id = idByName[`${p.name} - ${p.tag}`];
+    return id ? `/product/${id}` : '#';
+  };
 
   return (
     <div className="bg-black min-h-screen">
@@ -25,7 +36,7 @@ export default function ShopCollection({ gender, title }) {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12 mt-12 pb-20">
           {items.map((p) => (
-            <div key={p.slug} className="group flex flex-col items-start gap-1 w-full">
+            <Link key={p.slug} href={hrefFor(p)} className="group flex flex-col items-start gap-1 w-full cursor-pointer">
               <div className="relative bg-black w-full h-72 md:h-80 overflow-hidden border border-gray-800 group-hover:border-gray-600 transition-all duration-300">
                 <WebGLCycleCard images={p.images} hex={p.hex} />
               </div>
@@ -37,7 +48,7 @@ export default function ShopCollection({ gender, title }) {
                   <p className="text-sm text-gray-500 line-through">{currency}{p.price}</p>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

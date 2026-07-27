@@ -1,4 +1,5 @@
 'use client';
+import { useMemo } from 'react';
 import Link from 'next/link';
 import WebGLCycleCard from './WebGLCycleCard';
 import { trending } from '@/assets/photoshoot';
@@ -6,8 +7,19 @@ import { useAppContext } from '@/context/AppContext';
 
 // "Trending" — studio photoshoot cutouts in the WebGL showcase, cycling through
 // each product's shots on hover. Sits directly under Featured Categories.
+// Each card routes to its seeded DB product (product page -> cart -> checkout),
+// matched by "<name> - <tag>"; falls back to the gender page until DB loads.
 export default function TrendingShowcase() {
-  const { currency } = useAppContext();
+  const { currency, products } = useAppContext();
+  const idByName = useMemo(() => {
+    const m = {};
+    (products || []).forEach((d) => { m[d.name] = d._id; });
+    return m;
+  }, [products]);
+  const hrefFor = (p) => {
+    const id = idByName[`${p.name} - ${p.tag}`];
+    return id ? `/product/${id}` : `/${p.gender}`;
+  };
   if (!trending?.length) return null;
 
   return (
@@ -26,7 +38,7 @@ export default function TrendingShowcase() {
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12 mt-12 pb-16 md:pb-24">
         {trending.map((p) => (
-          <Link key={p.slug} href={`/${p.gender}`} className="group flex flex-col items-start gap-1 w-full cursor-pointer">
+          <Link key={p.slug} href={hrefFor(p)} className="group flex flex-col items-start gap-1 w-full cursor-pointer">
             <div className="relative bg-black w-full h-72 md:h-80 overflow-hidden border border-gray-800 group-hover:border-gray-600 transition-all duration-300">
               <WebGLCycleCard images={p.images} hex={p.hex} />
             </div>

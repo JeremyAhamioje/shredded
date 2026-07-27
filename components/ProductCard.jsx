@@ -19,6 +19,7 @@ const ProductCard = ({ product }) => {
                     className="group-hover:scale-110 transition-transform duration-500 object-cover w-full h-full"
                     width={800}
                     height={800}
+                    unoptimized
                 />
                 <button className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm p-2 border border-gray-700 hover:bg-white hover:border-white transition-all duration-300 group/heart">
                     <Image

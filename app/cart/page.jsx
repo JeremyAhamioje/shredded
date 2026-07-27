@@ -56,6 +56,7 @@ const Cart = () => {
                               className="w-16 h-auto object-cover"
                               width={1280}
                               height={720}
+                              unoptimized
                             />
                           </div>
                           <button

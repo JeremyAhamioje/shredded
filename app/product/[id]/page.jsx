@@ -41,6 +41,7 @@ const Product = () => {
                                 className="w-full h-auto object-cover"
                                 width={1280}
                                 height={720}
+                                unoptimized
                             />
                         </div>
 
@@ -61,6 +62,7 @@ const Product = () => {
                                         className="w-full h-auto object-cover"
                                         width={1280}
                                         height={720}
+                                        unoptimized
                                     />
                                 </div>
                             ))}
