@@ -139,6 +139,7 @@ export default function WebGLHoverCard({ angles, hex }) {
   const [restAngle, setRestAngle] = useState('front');
   const [supported, setSupported] = useState(true);
   const [hovered, setHovered] = useState(false);
+  const [active, setActive] = useState(false); // only hold a GL context near the viewport
 
   const angleOrder = useMemo(
     () => ['front', 'side', 'back'].filter((a) => angles && angles[a]),
@@ -157,8 +158,19 @@ export default function WebGLHoverCard({ angles, hex }) {
   // Reset to front whenever the colorway (angles set) changes.
   useEffect(() => { setRestAngle('front'); }, [angles]);
 
-  // ---- one-time WebGL setup ----------------------------------------------
+  // Mount/unmount the GL context based on viewport proximity, so pages with
+  // many cards never exceed the browser's ~16 live-context limit.
   useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setActive(e.isIntersecting), { rootMargin: '350px 0px' });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // ---- WebGL setup (runs when the card enters the mount zone) -------------
+  useEffect(() => {
+    if (!active) return;
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
@@ -282,7 +294,7 @@ export default function WebGLHoverCard({ angles, hex }) {
       gl.deleteProgram(program);
       sceneRef.current = null;
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [active]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ---- load / swap textures when the colorway or rest angle changes -------
   useEffect(() => {
@@ -316,7 +328,7 @@ export default function WebGLHoverCard({ angles, hex }) {
     load(angles[restAngle], st.A);
     load(angles[hoverAngle], st.B);
     st.kick && st.kick();
-  }, [angles, hex, restAngle, hoverAngle]);
+  }, [angles, hex, restAngle, hoverAngle, active]);
 
   const enter = () => {
     const st = sceneRef.current;
@@ -365,7 +377,15 @@ export default function WebGLHoverCard({ angles, hex }) {
       onMouseMove={move}
       className="relative w-full h-full"
     >
-      <canvas ref={canvasRef} className="block w-full h-full" />
+      {active ? (
+        <canvas ref={canvasRef} className="block w-full h-full" />
+      ) : (
+        // lightweight static poster while the GL context isn't mounted
+        <div className="absolute inset-0" style={{ background: `radial-gradient(60% 55% at 50% 34%, ${hex}26, #060606 80%)` }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={angles?.front} alt="" className="absolute inset-0 w-full h-full object-contain p-6" />
+        </div>
+      )}
 
       {/* front/back hint */}
       <div className="pointer-events-none absolute top-3 left-3 text-[10px] tracking-[0.2em] uppercase text-white/50">

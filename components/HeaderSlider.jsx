@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { assets } from "@/assets/assets";
 import Image from "next/image";
 import Link from "next/link";
+import HeroTiltGrid from "@/components/newdrop/HeroTiltGrid";
 
 
 const HeaderSlider = () => {
@@ -22,7 +22,7 @@ const HeaderSlider = () => {
       offer: "UNLEASH YOUR INNER BEAST — PREMIUM QUALITY — LIMITED EDITION",
       buttonText1: "SHOP NOW",
       buttonText2: "DISCOVER",
-      imgSrc: "https://res.cloudinary.com/dz6kxumoo/image/upload/v1769555478/Gemini_Generated_Image_ysmi1pysmi1pysmi_wbz8y2.png",
+      imgSrc: "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119048/quickcart/photoshoot/IMG_3106.png",
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ const HeaderSlider = () => {
       offer: "ELEVATE YOUR STYLE — GOTHIC AESTHETIC — BOLD DESIGNS",
       buttonText1: "SHOP NOW",
       buttonText2: "VIEW ALL",
-      imgSrc: "https://res.cloudinary.com/dz6kxumoo/image/upload/v1769555456/Gemini_Generated_Image_sl4jdosl4jdosl4j-removebg-preview_lgcdts.png",
+      variant: "tiltgrid",
     },
   ];
 
@@ -61,17 +61,28 @@ const HeaderSlider = () => {
             key={slide.id}
             className="relative flex flex-col items-center justify-center bg-black text-white min-w-full h-[70vh] md:h-[85vh] overflow-hidden"
           >
-            {/* Background Image with Overlay */}
+            {/* Background */}
             <div className="absolute inset-0 z-0">
-              <Image
-                className="w-full h-full object-cover opacity-40"
-                src={slide.imgSrc}
-                alt={`Slide ${index + 1}`}
-                width={1920}
-                height={1080}
-                priority={index === 0}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
+              {slide.variant === "tiltgrid" ? (
+                <>
+                  <HeroTiltGrid />
+                  <div className="absolute inset-0 bg-black/60"></div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
+                </>
+              ) : (
+                <>
+                  <Image
+                    className="w-full h-full object-cover opacity-40"
+                    src={slide.imgSrc}
+                    alt={`Slide ${index + 1}`}
+                    width={1920}
+                    height={1080}
+                    priority={index === 0}
+                    unoptimized
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
+                </>
+              )}
             </div>
 
             {/* Content */}
@@ -109,17 +120,20 @@ const HeaderSlider = () => {
               </div>
                      
 
-                     {/* Product Image Overlay (centered) */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-5 w-full max-w-md md:max-w-lg lg:max-w-xl">
-              <Image
-                className="w-full h-auto object-contain opacity-90"
-                src={slide.imgSrc}
-                alt={`Product ${index + 1}`}
-                width={600}
-                height={800}
-                priority={index === 0}
-              />
-            </div>
+                     {/* Product Image Overlay (centered) — not for the tilt-grid slide */}
+            {slide.variant !== "tiltgrid" && (
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-5 w-full max-w-md md:max-w-lg lg:max-w-xl">
+                <Image
+                  className="w-full h-auto object-contain opacity-90"
+                  src={slide.imgSrc}
+                  alt={`Product ${index + 1}`}
+                  width={600}
+                  height={800}
+                  priority={index === 0}
+                  unoptimized
+                />
+              </div>
+            )}
           </div>
         ))}
       </div>
