@@ -14,8 +14,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={`${outfit.className} antialiased bg-black text-white`} >
+      {/* suppressHydrationWarning: some browser extensions (e.g. TokenPocket adds
+          data-tp-bcm-channel) inject attributes on <html>/<body> before React
+          hydrates, which is harmless but triggers a hydration warning. */}
+      <html lang="en" suppressHydrationWarning>
+        <body className={`${outfit.className} antialiased bg-black text-white`} suppressHydrationWarning>
           <Toaster />
           <AppContextProvider>
             {children}
