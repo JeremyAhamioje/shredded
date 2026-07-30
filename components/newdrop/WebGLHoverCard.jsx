@@ -19,6 +19,7 @@
 // ---------------------------------------------------------------------------
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { SHOWCASE_FX } from './showcaseConfig';
 
 const VERT = `
 attribute vec2 aPos;
@@ -348,6 +349,16 @@ export default function WebGLHoverCard({ angles, hex }) {
     st.mouseT.y = -(((e.clientY - r.top) / r.height) * 2 - 1);
     st.kick && st.kick();
   };
+
+  // ---- Scaffolded plain look (SHOWCASE_FX off): static image, no shader ----
+  if (!SHOWCASE_FX) {
+    const src = angles?.front || angles?.side || angles?.back;
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img src={src} alt="" loading="lazy"
+           className="absolute inset-0 w-full h-full object-contain p-3" />
+    );
+  }
 
   // ---- CSS fallback (no WebGL) -------------------------------------------
   if (!supported) {

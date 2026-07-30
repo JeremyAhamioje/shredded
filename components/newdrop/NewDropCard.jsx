@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import WebGLHoverCard from './WebGLHoverCard';
+import { SHOWCASE_FX } from './showcaseConfig';
 import { useAppContext } from '@/context/AppContext';
 
 // One product "block": WebGL showcase canvas + color-dupe swatches + info.
@@ -14,8 +15,10 @@ export default function NewDropCard({ product }) {
       {/* Showcase block — the tinted lighting/backdrop is drawn inside the canvas.
           The outer glow lets that colorway light spill past the frame.        */}
       <div
-        className="relative aspect-[4/5] w-full overflow-hidden border border-gray-800 bg-black transition-all duration-500 group-hover:border-gray-600"
-        style={{ boxShadow: `0 30px 80px -40px ${colorway.hex}, inset 0 0 60px -30px ${colorway.hex}` }}
+        className={`relative aspect-[4/5] w-full overflow-hidden bg-black transition-all duration-500 ${
+          SHOWCASE_FX ? 'border border-gray-800 group-hover:border-gray-600' : ''
+        }`}
+        style={SHOWCASE_FX ? { boxShadow: `0 30px 80px -40px ${colorway.hex}, inset 0 0 60px -30px ${colorway.hex}` } : undefined}
       >
         <WebGLHoverCard angles={colorway.angles} hex={colorway.hex} />
 

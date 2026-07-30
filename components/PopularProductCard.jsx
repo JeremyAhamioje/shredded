@@ -4,6 +4,7 @@ import { assets } from '@/assets/assets';
 import Image from 'next/image';
 import { useAppContext } from '@/context/AppContext';
 import WebGLHoverCard from '@/components/newdrop/WebGLHoverCard';
+import { SHOWCASE_FX } from '@/components/newdrop/showcaseConfig';
 
 // Same layout as ProductCard, but the image area uses the WebGL front->back hover.
 // "Color agnostic": each product is a single colorway (no color buttons) — the
@@ -38,7 +39,7 @@ const PopularProductCard = ({ product }) => {
       onClick={() => { router.push('/product/' + product._id); scrollTo(0, 0); }}
       className="flex flex-col items-start gap-1 max-w-[280px] w-full cursor-pointer group"
     >
-      <div className="relative bg-black w-full h-72 md:h-80 overflow-hidden border border-gray-800 hover:border-gray-600 transition-all duration-300">
+      <div className={`relative bg-black w-full h-72 md:h-80 overflow-hidden transition-all duration-300 ${SHOWCASE_FX ? 'border border-gray-800 hover:border-gray-600' : ''}`}>
         <WebGLHoverCard angles={angles} hex={hex} />
         <button className="absolute top-3 right-3 z-10 bg-black/60 backdrop-blur-sm p-2 border border-gray-700 hover:bg-white hover:border-white transition-all duration-300 group/heart">
           <Image

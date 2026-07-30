@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import NewDropCard from './NewDropCard';
+import { SHOWCASE_FX } from './showcaseConfig';
 import { newDrop, newDropMeta } from '@/assets/newDrop';
 
 // The New Drop section. Used full on /new-drop, and as a teaser on the home page
@@ -12,10 +13,12 @@ export default function NewDropShowcase({ limit, showViewAll = false }) {
   return (
     <section className="relative w-full">
       {/* ambient stage glow behind the grid */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-24 h-[600px] w-[900px] -translate-x-1/2 rounded-full opacity-40 blur-[120px]"
-             style={{ background: 'radial-gradient(closest-side, rgba(120,120,130,0.35), transparent)' }} />
-      </div>
+      {SHOWCASE_FX && (
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute left-1/2 top-24 h-[600px] w-[900px] -translate-x-1/2 rounded-full opacity-40 blur-[120px]"
+               style={{ background: 'radial-gradient(closest-side, rgba(120,120,130,0.35), transparent)' }} />
+        </div>
+      )}
 
       <div className="relative px-6 md:px-16 lg:px-32">
         <div className="pt-16 md:pt-20 border-b border-gray-800 pb-6">

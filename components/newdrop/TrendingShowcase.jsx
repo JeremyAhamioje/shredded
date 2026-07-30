@@ -2,6 +2,7 @@
 import { useMemo } from 'react';
 import Link from 'next/link';
 import WebGLCycleCard from './WebGLCycleCard';
+import { SHOWCASE_FX } from './showcaseConfig';
 import { trending } from '@/assets/photoshoot';
 import { useAppContext } from '@/context/AppContext';
 
@@ -39,7 +40,9 @@ export default function TrendingShowcase() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12 mt-12 pb-16 md:pb-24">
         {trending.map((p) => (
           <Link key={p.slug} href={hrefFor(p)} className="group flex flex-col items-start gap-1 w-full cursor-pointer">
-            <div className="relative bg-black w-full h-72 md:h-80 overflow-hidden border border-gray-800 group-hover:border-gray-600 transition-all duration-300">
+            <div className={`relative bg-black w-full h-72 md:h-80 overflow-hidden transition-all duration-300 ${
+              SHOWCASE_FX ? 'border border-gray-800 group-hover:border-gray-600' : ''
+            }`}>
               <WebGLCycleCard images={p.images} hex={p.hex} />
             </div>
             <div className="flex flex-col gap-1 w-full mt-3">

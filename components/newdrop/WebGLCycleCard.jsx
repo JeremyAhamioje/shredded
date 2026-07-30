@@ -16,6 +16,7 @@
 // ---------------------------------------------------------------------------
 
 import { useEffect, useRef, useState } from 'react';
+import { SHOWCASE_FX } from './showcaseConfig';
 
 const VERT = `
 attribute vec2 aPos;
@@ -299,6 +300,15 @@ export default function WebGLCycleCard({ images = [], hex = '#888888' }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={images[0]} alt="" className="absolute inset-0 w-full h-full object-contain p-6" />
       </div>
+    );
+  }
+
+  // Scaffolded plain look (SHOWCASE_FX off): static image, no shader / cycle.
+  if (!SHOWCASE_FX) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img src={images[0]} alt="" loading="lazy"
+           className="absolute inset-0 w-full h-full object-contain p-3" />
     );
   }
 
