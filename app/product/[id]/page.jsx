@@ -34,11 +34,11 @@ const Product = () => {
             <div className="px-6 md:px-16 lg:px-32 pt-14 space-y-16">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
                     <div className="px-5 lg:px-16 xl:px-20">
-                        <div className="overflow-hidden bg-black mb-4 border border-gray-800 hover:border-gray-600 transition-colors duration-300">
+                        <div className="flex items-center justify-center overflow-hidden bg-black mb-4 border border-gray-800 hover:border-gray-600 transition-colors duration-300 h-[380px] sm:h-[460px] lg:h-[540px]">
                             <Image
                                 src={mainImage || productData.image[0]}
                                 alt={productData.name}
-                                className="w-full h-auto object-cover"
+                                className="w-full h-full object-contain p-4"
                                 width={1280}
                                 height={720}
                                 unoptimized
@@ -50,7 +50,7 @@ const Product = () => {
                                 <div
                                     key={index}
                                     onClick={() => setMainImage(image)}
-                                    className={`cursor-pointer overflow-hidden bg-black border transition-all duration-300 ${
+                                    className={`cursor-pointer flex items-center justify-center overflow-hidden bg-black border transition-all duration-300 h-24 sm:h-28 ${
                                         mainImage === image || (!mainImage && index === 0)
                                             ? 'border-white'
                                             : 'border-gray-800 hover:border-gray-600'
@@ -59,7 +59,7 @@ const Product = () => {
                                     <Image
                                         src={image}
                                         alt={`${productData.name} view ${index + 1}`}
-                                        className="w-full h-auto object-cover"
+                                        className="w-full h-full object-contain p-2"
                                         width={1280}
                                         height={720}
                                         unoptimized
