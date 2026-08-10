@@ -27,7 +27,7 @@ export default function TrendingShowcase() {
     <section className="relative w-full px-6 md:px-16 lg:px-32 pt-16 md:pt-20">
       <div className="flex items-end justify-between gap-4 border-b border-gray-800 pb-6">
         <div>
-          <p className="text-xs tracking-[0.35em] uppercase text-gray-500">Straight off the shoot</p>
+          <p className="text-xs tracking-[0.35em] uppercase text-gray-500">Fresh off the rack</p>
           <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-bold tracking-wide uppercase text-white">Trending</h2>
           <div className="w-24 h-1 bg-white mt-3" />
         </div>
@@ -50,7 +50,7 @@ export default function TrendingShowcase() {
               <p className="text-xs text-gray-500 uppercase tracking-wider">{p.tag}</p>
               <div className="flex items-center gap-2 mt-1">
                 <p className="text-lg md:text-xl font-bold text-white tracking-wide">{currency}{p.offerPrice}</p>
-                <p className="text-sm text-gray-500 line-through">{currency}{p.price}</p>
+                <p className="text-sm text-red-500 line-through">{currency}{p.price}</p>
               </div>
             </div>
           </Link>

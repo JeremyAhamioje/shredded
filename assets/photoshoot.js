@@ -6,10 +6,10 @@ export const trending = [
     "tag": "Crimson",
     "gender": "men",
     "hex": "#8f1f24",
-    "price": 65,
-    "offerPrice": 52,
+    "price": 40,
+    "offerPrice": 38,
     "images": [
-      "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119025/quickcart/photoshoot/IMG_3083.png",
+      "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1786320513/quickcart/photoshoot/daf5a7b8-8df8-465e-b7f7-0ff3b3708649.png",
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119024/quickcart/photoshoot/IMG_3081.png",
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119026/quickcart/photoshoot/IMG_3122.png"
     ]
@@ -20,8 +20,8 @@ export const trending = [
     "tag": "Onyx",
     "gender": "men",
     "hex": "#141414",
-    "price": 65,
-    "offerPrice": 52,
+    "price": 48,
+    "offerPrice": 45,
     "images": [
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119028/quickcart/photoshoot/IMG_3092.png",
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119029/quickcart/photoshoot/IMG_3102.png",
@@ -34,8 +34,8 @@ export const trending = [
     "tag": "Black",
     "gender": "men",
     "hex": "#141414",
-    "price": 40,
-    "offerPrice": 32,
+    "price": 38,
+    "offerPrice": 35,
     "images": [
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119033/quickcart/photoshoot/IMG_3090.png",
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119032/quickcart/photoshoot/IMG_3088.png",
@@ -48,8 +48,8 @@ export const trending = [
     "tag": "Black",
     "gender": "men",
     "hex": "#141414",
-    "price": 40,
-    "offerPrice": 32,
+    "price": 48,
+    "offerPrice": 45,
     "images": [
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119031/quickcart/photoshoot/IMG_3095.png"
     ]
@@ -60,8 +60,8 @@ export const trending = [
     "tag": "White",
     "gender": "men",
     "hex": "#e9e6df",
-    "price": 40,
-    "offerPrice": 32,
+    "price": 38,
+    "offerPrice": 35,
     "images": [
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785122433/quickcart/photoshoot/IMG_3103.png"
     ]
@@ -72,8 +72,8 @@ export const trending = [
     "tag": "White Print",
     "gender": "men",
     "hex": "#141414",
-    "price": 45,
-    "offerPrice": 36,
+    "price": 48,
+    "offerPrice": 45,
     "images": [
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119036/quickcart/photoshoot/IMG_3094.png"
     ]
@@ -84,8 +84,8 @@ export const trending = [
     "tag": "Blue Print",
     "gender": "men",
     "hex": "#1c2733",
-    "price": 45,
-    "offerPrice": 36,
+    "price": 40,
+    "offerPrice": 38,
     "images": [
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119037/quickcart/photoshoot/IMG_3108.png"
     ]
@@ -96,8 +96,8 @@ export const trending = [
     "tag": "Black",
     "gender": "men",
     "hex": "#141414",
-    "price": 38,
-    "offerPrice": 30,
+    "price": 40,
+    "offerPrice": 38,
     "images": [
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785122436/quickcart/photoshoot/IMG_3107.png"
     ]
@@ -109,7 +109,7 @@ export const trending = [
     "gender": "men",
     "hex": "#c9b79c",
     "price": 48,
-    "offerPrice": 39,
+    "offerPrice": 45,
     "images": [
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785122437/quickcart/photoshoot/IMG_3093.png"
     ]
@@ -120,7 +120,7 @@ export const trending = [
     "tag": "Grey",
     "gender": "men",
     "hex": "#6f7175",
-    "price": 55,
+    "price": 48,
     "offerPrice": 45,
     "images": [
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785122438/quickcart/photoshoot/IMG_3100.png",
@@ -133,8 +133,8 @@ export const trending = [
     "tag": "Burgundy",
     "gender": "women",
     "hex": "#5c1418",
-    "price": 70,
-    "offerPrice": 58,
+    "price": 38,
+    "offerPrice": 35,
     "images": [
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119038/quickcart/photoshoot/IMG_3113.png",
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119040/quickcart/photoshoot/IMG_3115.png",
@@ -147,8 +147,8 @@ export const trending = [
     "tag": "Mauve",
     "gender": "women",
     "hex": "#7c4a52",
-    "price": 68,
-    "offerPrice": 55,
+    "price": 40,
+    "offerPrice": 38,
     "images": [
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119042/quickcart/photoshoot/IMG_3099.png",
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119044/quickcart/photoshoot/IMG_3121.png"
@@ -160,8 +160,8 @@ export const trending = [
     "tag": "Blush",
     "gender": "women",
     "hex": "#d8b9b6",
-    "price": 75,
-    "offerPrice": 60,
+    "price": 48,
+    "offerPrice": 45,
     "images": [
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119045/quickcart/photoshoot/IMG_3117.png",
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119046/quickcart/photoshoot/IMG_3104.png",
@@ -174,8 +174,8 @@ export const trending = [
     "tag": "Black",
     "gender": "women",
     "hex": "#141414",
-    "price": 80,
-    "offerPrice": 64,
+    "price": 48,
+    "offerPrice": 45,
     "images": [
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119049/quickcart/photoshoot/IMG_3110.png",
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119050/quickcart/photoshoot/IMG_3111.png"
@@ -187,11 +187,11 @@ export const trending = [
     "tag": "Black",
     "gender": "women",
     "hex": "#141414",
-    "price": 62,
-    "offerPrice": 50,
+    "price": 48,
+    "offerPrice": 45,
     "images": [
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785122453/quickcart/photoshoot/IMG_3118.png",
-      "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785122454/quickcart/photoshoot/IMG_3120.png"
+      "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1786319486/quickcart/photoshoot/IMG_3312.png"
     ]
   },
   {
@@ -200,8 +200,8 @@ export const trending = [
     "tag": "Red",
     "gender": "women",
     "hex": "#8f1f24",
-    "price": 68,
-    "offerPrice": 55,
+    "price": 38,
+    "offerPrice": 35,
     "images": [
       "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785122455/quickcart/photoshoot/IMG_3109.png"
     ]

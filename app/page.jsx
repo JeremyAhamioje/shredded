@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import NewDropShowcase from "@/components/newdrop/NewDropShowcase";
 import FeaturedCategories from "@/components/newdrop/FeaturedCategories";
 import TrendingShowcase from "@/components/newdrop/TrendingShowcase";
+import FollowSocials from "@/components/FollowSocials";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <TrendingShowcase />
       <FeaturedCategories />
       <NewDropShowcase limit={4} showViewAll />
+      <FollowSocials />
       <div className="px-6 md:px-16 lg:px-32">
         <Banner />
         <NewsLetter />

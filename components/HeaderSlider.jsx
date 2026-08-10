@@ -8,27 +8,27 @@ const HeaderSlider = () => {
   const sliderData = [
     {
       id: 1,
-      title: "The Abyssal Collection",
-      subtitle: "Winter-Spring 2026",
-      offer: "FIRST DROP OF THE YEAR — ALL STOCK NO PRE ORDER — FAST SHIPPING",
+      title: "Shredded Motion",
+      subtitle: "For the 1%",
+      offer: "READY TO SHIP — PREMIUM COMPRESSION — NATIONWIDE DELIVERY",
       buttonText1: "SHOP NOW",
       buttonText2: "EXPLORE",
-      imgSrc: "https://res.cloudinary.com/dz6kxumoo/image/upload/v1769555516/gemini-2.5-flash-image_Generate_an_image_which_is_an_exact_replica_of_the_hoodie_image_attached_the_one-0_pfiljw.jpg",
+      imgSrc: "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1786317986/quickcart/hero/hero-slide1.png",
     },
     {
       id: 2,
-      title: "Forge Your Legacy",
-      subtitle: "Premium Athletic Wear",
-      offer: "UNLEASH YOUR INNER BEAST — PREMIUM QUALITY — LIMITED EDITION",
+      title: "Built Different",
+      subtitle: "Shredded Motion",
+      offer: "PERFORMANCE APPAREL FOR THE 1%",
       buttonText1: "SHOP NOW",
       buttonText2: "DISCOVER",
-      imgSrc: "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119048/quickcart/photoshoot/IMG_3106.png",
+      imgSrc: "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119040/quickcart/photoshoot/IMG_3115.png",
     },
     {
       id: 3,
-      title: "Embrace The Darkness",
-      subtitle: "Exclusive Apparel",
-      offer: "ELEVATE YOUR STYLE — GOTHIC AESTHETIC — BOLD DESIGNS",
+      title: "Own The Grind",
+      subtitle: "For the 1%",
+      offer: "STUDIO DROP — ENGINEERED COMPRESSION — NATIONWIDE DELIVERY",
       buttonText1: "SHOP NOW",
       buttonText2: "VIEW ALL",
       variant: "tiltgrid",
@@ -122,9 +122,12 @@ const HeaderSlider = () => {
 
                      {/* Product Image Overlay (centered) — not for the tilt-grid slide */}
             {slide.variant !== "tiltgrid" && (
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-5 w-full max-w-md md:max-w-lg lg:max-w-xl">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-[5] flex items-end justify-center h-[82%] md:h-[86%] w-full max-w-md md:max-w-lg lg:max-w-xl">
+                {/* h-full + object-contain keeps the whole figure (incl. face) in
+                    frame no matter the source aspect ratio; object-bottom anchors
+                    the feet to the hero base. */}
                 <Image
-                  className="w-full h-auto object-contain opacity-90"
+                  className="w-full h-full object-contain object-bottom opacity-90"
                   src={slide.imgSrc}
                   alt={`Product ${index + 1}`}
                   width={600}

@@ -10,8 +10,8 @@ export const newDrop = [
     "slug": "shredded-hoodie",
     "name": "Shredded Pullover Hoodie",
     "description": "Heavyweight raglan hoodie with the tattoo-script chest print.",
-    "price": 120,
-    "offerPrice": 95,
+    "price": 38,
+    "offerPrice": 35,
     "colorways": [
       {
         "name": "Black",
@@ -44,8 +44,8 @@ export const newDrop = [
     "slug": "oversized-tee",
     "name": "Oversized Shredded Tee",
     "description": "Boxy drop-shoulder tee with the storm-script graphic.",
-    "price": 55,
-    "offerPrice": 42,
+    "price": 40,
+    "offerPrice": 38,
     "colorways": [
       {
         "name": "Black",
@@ -71,8 +71,8 @@ export const newDrop = [
     "slug": "compression-longsleeve",
     "name": "Compression Long Sleeve",
     "description": "Second-skin long-sleeve base layer with bonded seams.",
-    "price": 70,
-    "offerPrice": 58,
+    "price": 48,
+    "offerPrice": 45,
     "colorways": [
       {
         "name": "White",
@@ -105,7 +105,7 @@ export const newDrop = [
     "slug": "compression-tee",
     "name": "Compression Tee",
     "description": "Fitted short-sleeve compression tee, mock-neck cut.",
-    "price": 48,
+    "price": 40,
     "offerPrice": 38,
     "colorways": [
       {
@@ -130,8 +130,8 @@ export const newDrop = [
     "slug": "shredded-joggers",
     "name": "Shredded Joggers",
     "description": "Tapered fleece joggers with zip cuffs and thigh script.",
-    "price": 80,
-    "offerPrice": 65,
+    "price": 40,
+    "offerPrice": 38,
     "colorways": [
       {
         "name": "Black",
@@ -163,8 +163,8 @@ export const newDrop = [
     "slug": "quarter-zip-longsleeve",
     "name": "Quarter-Zip Long Sleeve",
     "description": "Quarter-zip training top with tattoo-sleeve detailing.",
-    "price": 90,
-    "offerPrice": 75,
+    "price": 38,
+    "offerPrice": 35,
     "colorways": [
       {
         "name": "Crimson",

@@ -37,7 +37,7 @@ const DRY = process.argv.includes('--dry');
 //  • cropped-jorts (IMG_3093) has NO back image in the shoot (front only).
 const TRENDING = [
   // --- men's ---
-  { slug: 'crimson-quarter-zip', name: 'Compression Quarter-Zip', tag: 'Crimson', gender: 'men', hex: '#8f1f24', price: 65, offerPrice: 52, ids: ['IMG_3083', 'IMG_3081', 'IMG_3122'] },
+  { slug: 'crimson-quarter-zip', name: 'Compression Quarter-Zip', tag: 'Crimson', gender: 'men', hex: '#8f1f24', price: 65, offerPrice: 52, ids: ['daf5a7b8-8df8-465e-b7f7-0ff3b3708649-removebg-preview (1).png', 'IMG_3081', 'IMG_3122'] },
   { slug: 'onyx-quarter-zip',    name: 'Compression Quarter-Zip', tag: 'Onyx',    gender: 'men', hex: '#141414', price: 65, offerPrice: 52, ids: ['IMG_3092', 'IMG_3102', 'IMG_3105'] },
   { slug: 'training-tank',       name: 'Sleeveless Training Tank', tag: 'Black',  gender: 'men', hex: '#141414', price: 40, offerPrice: 32, ids: ['IMG_3090', 'IMG_3088', 'IMG_3087'] },
   { slug: 'muscle-tank',         name: 'Sleeveless Muscle Tank',   tag: 'Black',  gender: 'men', hex: '#141414', price: 40, offerPrice: 32, ids: ['IMG_3095'] }, // own product: one-arm, no back
@@ -52,7 +52,7 @@ const TRENDING = [
   { slug: 'ribbed-ls-set',       name: 'Ribbed Long-Sleeve Set',   tag: 'Mauve',   gender: 'women', hex: '#7c4a52', price: 68, offerPrice: 55, ids: ['IMG_3099', 'IMG_3121'] },
   { slug: 'sculpt-bodysuit',     name: 'Sculpt Bodysuit',          tag: 'Blush',   gender: 'women', hex: '#d8b9b6', price: 75, offerPrice: 60, ids: ['IMG_3117', 'IMG_3104', 'IMG_3106'] },
   { slug: 'flare-jumpsuit',      name: 'Flare Jumpsuit',           tag: 'Black',   gender: 'women', hex: '#141414', price: 80, offerPrice: 64, ids: ['IMG_3110', 'IMG_3111'] },
-  { slug: 'cropped-set',         name: 'Cropped Two-Piece Set',    tag: 'Black',   gender: 'women', hex: '#141414', price: 62, offerPrice: 50, ids: ['IMG_3118', 'IMG_3120'] }, // front + back
+  { slug: 'cropped-set',         name: 'Cropped Two-Piece Set',    tag: 'Black',   gender: 'women', hex: '#141414', price: 62, offerPrice: 50, ids: ['IMG_3118', 'IMG_3312'] }, // front + new second image
   { slug: 'piped-set',           name: 'Piped Two-Piece Set',      tag: 'Red',     gender: 'women', hex: '#8f1f24', price: 68, offerPrice: 55, ids: ['IMG_3109'] }, // single
 ];
 
@@ -81,6 +81,7 @@ const optimize = (url) => url.replace('/upload/', '/upload/f_auto,q_auto:best/')
 // resolve an IMG_#### stem to the actual (deduped) filename in SRC
 const allFiles = fs.existsSync(SRC) ? fs.readdirSync(SRC) : [];
 function resolveFile(id) {
+  if (allFiles.includes(id)) return id; // id given as a full filename
   const cands = [
     `${id}-removebg-preview.png`,
     `${id}_1-removebg-preview.png`,
@@ -90,12 +91,24 @@ function resolveFile(id) {
   return allFiles.find((f) => f.startsWith(id + '-') || f.startsWith(id + '_')) || null;
 }
 
+// clean, stable Cloudinary public_id: IMG_#### stays as-is; full filenames get
+// their -removebg-preview suffix stripped and sanitized.
+function publicIdFor(id, file) {
+  if (/^IMG_\d+$/.test(id)) return id;
+  return path.parse(file).name
+    .replace(/-removebg-preview.*$/, '')
+    .replace(/[^a-zA-Z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 40);
+}
+
 const cache = new Map(); // id -> optimized url
 
 async function uploadId(id) {
   if (cache.has(id)) return cache.get(id);
   const file = resolveFile(id);
   if (!file) { console.warn(`⚠  no file for ${id}`); return null; }
+  const pid = publicIdFor(id, file);
 
   // native resolution, keep alpha, no sharpen (sharpening distorted faces)
   const buf = await sharp(path.join(SRC, file))
@@ -104,13 +117,13 @@ async function uploadId(id) {
 
   if (DRY) {
     console.log(`   ${id} <- ${file} (${(buf.length / 1024).toFixed(0)} KB)`);
-    const url = `https://res.cloudinary.com/<cloud>/image/upload/f_auto,q_auto:best/quickcart/photoshoot/${id}.png`;
+    const url = `https://res.cloudinary.com/<cloud>/image/upload/f_auto,q_auto:best/quickcart/photoshoot/${pid}.png`;
     cache.set(id, url); return url;
   }
 
   const url = await new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
-      { folder: 'quickcart/photoshoot', public_id: id, overwrite: true, resource_type: 'image' },
+      { folder: 'quickcart/photoshoot', public_id: pid, overwrite: true, resource_type: 'image' },
       (err, res) => (err ? reject(err) : resolve(res.secure_url))
     );
     stream.end(buf);

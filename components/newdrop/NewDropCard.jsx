@@ -55,7 +55,7 @@ export default function NewDropCard({ product }) {
         <div className="mt-2 flex items-center gap-3">
           <span className="text-lg font-bold text-white">{currency}{product.offerPrice}</span>
           {product.offerPrice < product.price && (
-            <span className="text-sm text-gray-600 line-through">{currency}{product.price}</span>
+            <span className="text-sm text-red-500 line-through">{currency}{product.price}</span>
           )}
         </div>
       </div>
