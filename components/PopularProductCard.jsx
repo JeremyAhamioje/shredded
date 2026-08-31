@@ -78,7 +78,7 @@ const PopularProductCard = ({ product }) => {
 
         <div className="flex items-center justify-between w-full mt-2">
           <p className="text-lg md:text-xl font-bold text-white tracking-wide">
-            {currency}{product.offerPrice}
+            {currency}{product.offerPrice.toLocaleString()}
           </p>
           <button className="max-sm:hidden px-5 py-2 text-white text-xs font-semibold tracking-wider uppercase border border-white hover:bg-white hover:text-black transition-all duration-300">
             Buy Now

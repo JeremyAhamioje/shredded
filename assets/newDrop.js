@@ -7,72 +7,11 @@ export const newDropMeta = {
 
 export const newDrop = [
   {
-    "slug": "shredded-hoodie",
-    "name": "Shredded Pullover Hoodie",
-    "description": "Heavyweight raglan hoodie with the tattoo-script chest print.",
-    "price": 38,
-    "offerPrice": 35,
-    "colorways": [
-      {
-        "name": "Black",
-        "hex": "#141414",
-        "angles": {
-          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893122/quickcart/newdrop/shredded-hoodie__black__front.png",
-          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893123/quickcart/newdrop/shredded-hoodie__black__back.png"
-        }
-      },
-      {
-        "name": "White",
-        "hex": "#e9e6df",
-        "angles": {
-          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893124/quickcart/newdrop/shredded-hoodie__white__front.png",
-          "side": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893126/quickcart/newdrop/shredded-hoodie__white__side.png",
-          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893127/quickcart/newdrop/shredded-hoodie__white__back.png"
-        }
-      },
-      {
-        "name": "Crimson",
-        "hex": "#8f1f24",
-        "angles": {
-          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893128/quickcart/newdrop/shredded-hoodie__crimson__front.png",
-          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893129/quickcart/newdrop/shredded-hoodie__crimson__back.png"
-        }
-      }
-    ]
-  },
-  {
-    "slug": "oversized-tee",
-    "name": "Oversized Shredded Tee",
-    "description": "Boxy drop-shoulder tee with the storm-script graphic.",
-    "price": 40,
-    "offerPrice": 38,
-    "colorways": [
-      {
-        "name": "Black",
-        "hex": "#141414",
-        "angles": {
-          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893130/quickcart/newdrop/oversized-tee__black__front.png",
-          "side": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893131/quickcart/newdrop/oversized-tee__black__side.png",
-          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893132/quickcart/newdrop/oversized-tee__black__back.png"
-        }
-      },
-      {
-        "name": "White",
-        "hex": "#e9e6df",
-        "angles": {
-          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893133/quickcart/newdrop/oversized-tee__white__front.png",
-          "side": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893134/quickcart/newdrop/oversized-tee__white__side.png",
-          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893135/quickcart/newdrop/oversized-tee__white__back.png"
-        }
-      }
-    ]
-  },
-  {
     "slug": "compression-longsleeve",
     "name": "Compression Long Sleeve",
     "description": "Second-skin long-sleeve base layer with bonded seams.",
-    "price": 48,
-    "offerPrice": 45,
+    "price": 55000,
+    "offerPrice": 45000,
     "colorways": [
       {
         "name": "White",
@@ -105,8 +44,8 @@ export const newDrop = [
     "slug": "compression-tee",
     "name": "Compression Tee",
     "description": "Fitted short-sleeve compression tee, mock-neck cut.",
-    "price": 40,
-    "offerPrice": 38,
+    "price": 45000,
+    "offerPrice": 38000,
     "colorways": [
       {
         "name": "Onyx",
@@ -115,14 +54,6 @@ export const newDrop = [
           "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893143/quickcart/newdrop/compression-tee__onyx__front.png",
           "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893144/quickcart/newdrop/compression-tee__onyx__back.png"
         }
-      },
-      {
-        "name": "Storm",
-        "hex": "#1c2733",
-        "angles": {
-          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893145/quickcart/newdrop/compression-tee__storm__front.png",
-          "side": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893146/quickcart/newdrop/compression-tee__storm__side.png"
-        }
       }
     ]
   },
@@ -130,8 +61,8 @@ export const newDrop = [
     "slug": "shredded-joggers",
     "name": "Shredded Joggers",
     "description": "Tapered fleece joggers with zip cuffs and thigh script.",
-    "price": 40,
-    "offerPrice": 38,
+    "price": 55000,
+    "offerPrice": 45000,
     "colorways": [
       {
         "name": "Black",
@@ -163,8 +94,8 @@ export const newDrop = [
     "slug": "quarter-zip-longsleeve",
     "name": "Quarter-Zip Long Sleeve",
     "description": "Quarter-zip training top with tattoo-sleeve detailing.",
-    "price": 38,
-    "offerPrice": 35,
+    "price": 55000,
+    "offerPrice": 45000,
     "colorways": [
       {
         "name": "Crimson",

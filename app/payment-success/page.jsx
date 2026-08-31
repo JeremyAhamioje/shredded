@@ -68,7 +68,7 @@ const PaymentSuccessContent = () => {
         <div className="min-h-screen flex flex-col items-center justify-center text-center px-6">
             {status === "checking" && (
                 <div>
-                    <div className="w-12 h-12 border-4 border-orange-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                    <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-4" />
                     <p className="text-gray-400 text-lg">Confirming your payment...</p>
                 </div>
             )}
@@ -82,7 +82,7 @@ const PaymentSuccessContent = () => {
                     <h1 className="text-2xl font-semibold text-white">Payment Successful!</h1>
                     <p className="text-gray-400">Your order has been confirmed and is being processed.</p>
                     <button onClick={() => router.push("/my-orders")}
-                        className="mt-4 bg-orange-600 text-white px-8 py-3 hover:bg-orange-700">
+                        className="mt-4 bg-white text-black px-8 py-3 hover:bg-gray-200">
                         View My Orders
                     </button>
                 </div>
@@ -97,7 +97,7 @@ const PaymentSuccessContent = () => {
                     <h1 className="text-2xl font-semibold text-white">Payment Processing</h1>
                     <p className="text-gray-400">Your payment is being confirmed. Check My Orders in a moment.</p>
                     <button onClick={() => router.push("/my-orders")}
-                        className="mt-4 bg-orange-600 text-white px-8 py-3 hover:bg-orange-700">
+                        className="mt-4 bg-white text-black px-8 py-3 hover:bg-gray-200">
                         View My Orders
                     </button>
                 </div>
@@ -111,7 +111,7 @@ const PaymentSuccess = () => (
         <Navbar />
         <Suspense fallback={
             <div className="min-h-screen flex items-center justify-center">
-                <div className="w-12 h-12 border-4 border-orange-600 border-t-transparent rounded-full animate-spin" />
+                <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin" />
             </div>
         }>
             <PaymentSuccessContent />

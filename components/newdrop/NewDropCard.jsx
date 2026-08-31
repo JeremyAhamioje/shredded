@@ -1,21 +1,34 @@
 'use client';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import WebGLHoverCard from './WebGLHoverCard';
 import { SHOWCASE_FX } from './showcaseConfig';
 import { useAppContext } from '@/context/AppContext';
 
 // One product "block": WebGL showcase canvas + color-dupe swatches + info.
 export default function NewDropCard({ product }) {
-  const { currency } = useAppContext();
+  const { currency, products, router } = useAppContext();
   const [ci, setCi] = useState(0);
   const colorway = product.colorways[ci];
+
+  // route each colorway to its seeded DB product ("<name> - <colorway>")
+  const idByName = useMemo(() => {
+    const m = {};
+    (products || []).forEach((d) => { m[d.name] = d._id; });
+    return m;
+  }, [products]);
+  const go = () => {
+    const id = idByName[`${product.name} - ${colorway.name}`];
+    router.push(id ? `/product/${id}` : '/all-products');
+    scrollTo(0, 0);
+  };
 
   return (
     <div className="group flex flex-col">
       {/* Showcase block — the tinted lighting/backdrop is drawn inside the canvas.
           The outer glow lets that colorway light spill past the frame.        */}
       <div
-        className={`relative aspect-[4/5] w-full overflow-hidden bg-black transition-all duration-500 ${
+        onClick={go}
+        className={`relative aspect-[4/5] w-full overflow-hidden bg-black cursor-pointer transition-all duration-500 ${
           SHOWCASE_FX ? 'border border-gray-800 group-hover:border-gray-600' : ''
         }`}
         style={SHOWCASE_FX ? { boxShadow: `0 30px 80px -40px ${colorway.hex}, inset 0 0 60px -30px ${colorway.hex}` } : undefined}
@@ -47,15 +60,15 @@ export default function NewDropCard({ product }) {
       </div>
 
       {/* Info */}
-      <div className="mt-2">
+      <div className="mt-2 cursor-pointer" onClick={go}>
         <p className="text-sm md:text-base font-semibold tracking-wide uppercase text-white truncate">
           {product.name}
         </p>
         <p className="text-xs text-gray-500 truncate">{product.description}</p>
         <div className="mt-2 flex items-center gap-3">
-          <span className="text-lg font-bold text-white">{currency}{product.offerPrice}</span>
+          <span className="text-lg font-bold text-white">{currency}{product.offerPrice.toLocaleString()}</span>
           {product.offerPrice < product.price && (
-            <span className="text-sm text-red-500 line-through">{currency}{product.price}</span>
+            <span className="text-sm text-red-500 line-through">{currency}{product.price.toLocaleString()}</span>
           )}
         </div>
       </div>

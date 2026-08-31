@@ -44,8 +44,8 @@ export default function ShopCollection({ gender, title }) {
                 <p className="text-sm md:text-base font-semibold tracking-wide uppercase text-white truncate">{p.name}</p>
                 <p className="text-xs text-gray-500 uppercase tracking-wider">{p.tag}</p>
                 <div className="flex items-center gap-2 mt-1">
-                  <p className="text-lg md:text-xl font-bold text-white">{currency}{p.offerPrice}</p>
-                  <p className="text-sm text-red-500 line-through">{currency}{p.price}</p>
+                  <p className="text-lg md:text-xl font-bold text-white">{currency}{p.offerPrice.toLocaleString()}</p>
+                  <p className="text-sm text-red-500 line-through">{currency}{p.price.toLocaleString()}</p>
                 </div>
               </div>
             </Link>

@@ -93,9 +93,9 @@ const Product = () => {
                             {productData.description}
                         </p>
                         <p className="text-4xl font-bold mt-8 tracking-wide">
-                            {currency}{productData.offerPrice}
+                            {currency}{productData.offerPrice.toLocaleString()}
                             <span className="text-lg font-normal text-red-500 line-through ml-3">
-                                {currency}{productData.price}
+                                {currency}{productData.price.toLocaleString()}
                             </span>
                         </p>
                         <hr className="border-gray-800 my-8" />

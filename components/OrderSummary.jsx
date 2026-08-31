@@ -1,6 +1,7 @@
 'use client'
 import { useAppContext } from "@/context/AppContext";
 import axios from "@/lib/axios";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -130,7 +131,7 @@ const OrderSummary = () => {
                     <div className="flex flex-col items-start gap-3">
                         <input type="text" placeholder="Enter promo code"
                             className="flex-grow w-full outline-none p-2.5 bg-gray-900 text-white border border-gray-700 placeholder-gray-600" />
-                        <button className="bg-orange-600 text-white px-9 py-2 hover:bg-orange-700">Apply</button>
+                        <button className="bg-white text-black px-9 py-2 hover:bg-gray-200">Apply</button>
                     </div>
                 </div>
 
@@ -139,7 +140,7 @@ const OrderSummary = () => {
                 <div className="space-y-4">
                     <div className="flex justify-between text-base font-medium">
                         <p className="uppercase text-gray-400">Items {getCartCount()}</p>
-                        <p className="text-white">{currency}{getCartAmount()}</p>
+                        <p className="text-white">{currency}{getCartAmount().toLocaleString()}</p>
                     </div>
                     <div className="flex justify-between">
                         <p className="text-gray-400">Shipping Fee</p>
@@ -147,11 +148,11 @@ const OrderSummary = () => {
                     </div>
                     <div className="flex justify-between">
                         <p className="text-gray-400">Tax (2%)</p>
-                        <p className="font-medium text-white">{currency}{Math.floor(getCartAmount() * 0.02)}</p>
+                        <p className="font-medium text-white">{currency}{Math.floor(getCartAmount() * 0.02).toLocaleString()}</p>
                     </div>
                     <div className="flex justify-between text-lg md:text-xl font-medium border-t border-gray-800 pt-3">
                         <p className="text-white">Total</p>
-                        <p className="text-white">{currency}{getCartAmount() + Math.floor(getCartAmount() * 0.02)}</p>
+                        <p className="text-white">{currency}{(getCartAmount() + Math.floor(getCartAmount() * 0.02)).toLocaleString()}</p>
                     </div>
                 </div>
             </div>
@@ -159,7 +160,7 @@ const OrderSummary = () => {
             <button
                 onClick={handlePlaceOrder}
                 disabled={isLoading}
-                className="w-full bg-orange-600 text-white py-3 mt-5 hover:bg-orange-700 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full bg-white text-black py-3 mt-5 hover:bg-gray-200 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
                 {isLoading ? (
                     <>
@@ -168,6 +169,13 @@ const OrderSummary = () => {
                     </>
                 ) : "Place Order & Pay"}
             </button>
+
+            <p className="text-[11px] text-gray-500 mt-3 leading-relaxed">
+                Free nationwide delivery — 1–3 days in Lagos, 3–7 days other states. See{" "}
+                <Link href="/shipping" className="text-gray-300 underline underline-offset-2 hover:text-white">Delivery</Link>
+                {" "}&amp;{" "}
+                <Link href="/returns" className="text-gray-300 underline underline-offset-2 hover:text-white">Returns</Link>.
+            </p>
         </div>
     );
 };

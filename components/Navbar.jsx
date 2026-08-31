@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import { assets } from "@/assets/assets";
 import Link from "next/link";
@@ -99,7 +100,7 @@ const Navbar = () => {
                   height={16}
                 />
                 {getCartCount() > 0 && (
-                  <span className="absolute -top-2 -right-2 w-4 h-4 bg-orange-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
+                  <span className="absolute -top-2 -right-2 w-4 h-4 bg-red-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
                     {getCartCount() > 9 ? "9+" : getCartCount()}
                   </span>
                 )}
@@ -202,7 +203,7 @@ const Navbar = () => {
                   height={16}
                 />
                 {getCartCount() > 0 && (
-                  <span className="absolute -top-2 -right-2 w-4 h-4 bg-orange-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
+                  <span className="absolute -top-2 -right-2 w-4 h-4 bg-red-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
                     {getCartCount() > 9 ? "9+" : getCartCount()}
                   </span>
                 )}
