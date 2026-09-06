@@ -7,8 +7,25 @@ import { ClerkProvider } from "@clerk/nextjs";
 const outfit = Outfit({ subsets: ['latin'], weight: ["300", "400", "500"] })
 
 export const metadata = {
-  title: "Shreddded-Gymwear",
-  description: "Gymwear and fitness apparel for the modern athlete.",
+  metadataBase: new URL("https://shreddedmotion.store"),
+  title: "Shredded Motion",
+  description:
+    "Premium performance gymwear and compression apparel — built for the 1%. Nationwide delivery across Nigeria.",
+  openGraph: {
+    title: "Shredded Motion",
+    description:
+      "Premium performance gymwear and compression apparel — built for the 1%. Nationwide delivery across Nigeria.",
+    url: "https://shreddedmotion.store",
+    siteName: "Shredded Motion",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shredded Motion",
+    description:
+      "Premium performance gymwear and compression apparel — built for the 1%.",
+  },
 };
 
 export default function RootLayout({ children }) {
