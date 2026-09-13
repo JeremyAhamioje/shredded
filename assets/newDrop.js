@@ -93,7 +93,8 @@ export const newDrop = [
         "name": "Grey",
         "hex": "#b8bcc0",
         "angles": {
-          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338942/quickcart/newdrop/wide-leg-sweatpants__grey__front.png"
+          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789340183/quickcart/newdrop/wide-leg-sweatpants__grey__front.png",
+          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789340185/quickcart/newdrop/wide-leg-sweatpants__grey__back.png"
         }
       }
     ]

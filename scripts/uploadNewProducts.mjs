@@ -27,7 +27,8 @@ function loadEnv() {
 const FILES = {
   'WhatsApp_Image_2026-09-13_at_01.14.28-removebg-preview.png':            'wide-leg-sweatpants__tan__front',
   'WhatsApp_Image_2026-09-13_at_01.14.28_-_Copy-removebg-preview.png':     'wide-leg-sweatpants__tan__back',
-  'WhatsApp_Image_2026-09-13_at_01.14.34-removebg-preview.png':            'wide-leg-sweatpants__grey__front',
+  'WhatsApp_Image_2026-09-13_at_01.14.34__1_-removebg-preview.png':        'wide-leg-sweatpants__grey__front',
+  'WhatsApp_Image_2026-09-13_at_01.14.34-removebg-preview.png':            'wide-leg-sweatpants__grey__back',
   'WhatsApp_Image_2026-09-13_at_01.14.34__3_-removebg-preview.png':        'shredded-ls-set__black__front',
   'WhatsApp_Image_2026-09-13_at_01.14.34__2_-removebg-preview.png':        'shredded-ls-set__black__back',
   'WhatsApp_Image_2026-09-13_at_01.14.34__4_-removebg-preview.png':        'flare-jumpsuit__black__front',
@@ -47,7 +48,7 @@ const PRODUCTS = (U) => [
   { slug: 'wide-leg-sweatpants', name: 'Wide-Leg Sweatpants', description: 'Relaxed wide-leg sweatpants in heavyweight brushed fleece with embroidered crest.', price: 55000, offerPrice: 45000,
     colorways: [
       { name: 'Tan',  hex: '#c9a97e', angles: { front: U['wide-leg-sweatpants__tan__front'], back: U['wide-leg-sweatpants__tan__back'] } },
-      { name: 'Grey', hex: '#b8bcc0', angles: { front: U['wide-leg-sweatpants__grey__front'] } },
+      { name: 'Grey', hex: '#b8bcc0', angles: { front: U['wide-leg-sweatpants__grey__front'], back: U['wide-leg-sweatpants__grey__back'] } },
     ] },
   { slug: 'shredded-ls-set', name: 'Shredded Long-Sleeve Set', description: 'Long-sleeve crop and high-waist legging set with keyhole detail.', price: 55000, offerPrice: 45000,
     colorways: [ { name: 'Black', hex: '#141414', angles: { front: U['shredded-ls-set__black__front'], back: U['shredded-ls-set__black__back'] } } ] },
