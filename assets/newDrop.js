@@ -17,17 +17,17 @@ export const newDrop = [
         "name": "White",
         "hex": "#e9e6df",
         "angles": {
-          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893136/quickcart/newdrop/compression-longsleeve__white__front.png",
+          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893138/quickcart/newdrop/compression-longsleeve__white__back.png",
           "side": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893137/quickcart/newdrop/compression-longsleeve__white__side.png",
-          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893138/quickcart/newdrop/compression-longsleeve__white__back.png"
+          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893136/quickcart/newdrop/compression-longsleeve__white__front.png"
         }
       },
       {
         "name": "Black",
         "hex": "#141414",
         "angles": {
-          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893139/quickcart/newdrop/compression-longsleeve__black__front.png",
-          "side": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893141/quickcart/newdrop/compression-longsleeve__black__side.png"
+          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893141/quickcart/newdrop/compression-longsleeve__black__side.png",
+          "side": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893139/quickcart/newdrop/compression-longsleeve__black__front.png"
         }
       },
       {
@@ -110,8 +110,8 @@ export const newDrop = [
         "name": "Black",
         "hex": "#141414",
         "angles": {
-          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338943/quickcart/newdrop/shredded-ls-set__black__front.png",
-          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338944/quickcart/newdrop/shredded-ls-set__black__back.png"
+          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338944/quickcart/newdrop/shredded-ls-set__black__back.png",
+          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338943/quickcart/newdrop/shredded-ls-set__black__front.png"
         }
       }
     ]
@@ -161,8 +161,8 @@ export const newDrop = [
         "name": "Black",
         "hex": "#141414",
         "angles": {
-          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338950/quickcart/newdrop/contrast-shorts__black__front.png",
-          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338951/quickcart/newdrop/contrast-shorts__black__back.png"
+          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338951/quickcart/newdrop/contrast-shorts__black__back.png",
+          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338950/quickcart/newdrop/contrast-shorts__black__front.png"
         }
       }
     ]
@@ -178,8 +178,8 @@ export const newDrop = [
         "name": "Red",
         "hex": "#b11d2a",
         "angles": {
-          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338952/quickcart/newdrop/piped-set__red__front.png",
-          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338952/quickcart/newdrop/piped-set__red__back.png"
+          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338952/quickcart/newdrop/piped-set__red__back.png",
+          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338952/quickcart/newdrop/piped-set__red__front.png"
         }
       }
     ]
@@ -195,8 +195,8 @@ export const newDrop = [
         "name": "Burgundy",
         "hex": "#5c1a2b",
         "angles": {
-          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338953/quickcart/newdrop/leopard-set__burgundy__front.png",
-          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338954/quickcart/newdrop/leopard-set__burgundy__back.png"
+          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338954/quickcart/newdrop/leopard-set__burgundy__back.png",
+          "back": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1789338953/quickcart/newdrop/leopard-set__burgundy__front.png"
         }
       }
     ]
