@@ -29,6 +29,10 @@ const HOME_FEATURED = [
   'Ribbed Long-Sleeve Set - Mauve',
   'Wide-Leg Sweatpants - Grey',
   'Leopard Seamless Set - Burgundy',
+  'Compression Long Sleeve - White',
+  'Compression Long Sleeve - Black',
+  'Compression Long Sleeve - Crimson',
+  'Compression Tee - Onyx',
 ];
 
 // The New Drop section. Used full on /new-drop, and as a teaser on the home page
