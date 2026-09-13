@@ -20,6 +20,7 @@ import mongoose from 'mongoose';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const CLEAR = process.argv.includes('--clear');
+const ONLY_NEW = process.argv.includes('--only-new'); // insert absent names only; never overwrite existing docs
 
 // --- tiny .env loader -------------------------------------------------------
 function loadEnv() {
@@ -48,6 +49,13 @@ const CATEGORY = {
   'compression-tee': 'Compression',
   'shredded-joggers': 'Jogger',
   'quarter-zip-longsleeve': 'Compression',
+  'wide-leg-sweatpants': 'Jogger',
+  'shredded-ls-set': 'Gymwear',
+  'flare-jumpsuit': 'Gymwear',
+  'ribbed-ls-set': 'Gymwear',
+  'contrast-shorts': 'Jogger',
+  'piped-set': 'Gymwear',
+  'leopard-set': 'Gymwear',
 };
 
 const productSchema = new mongoose.Schema({
@@ -69,7 +77,8 @@ function buildDocs(newDrop) {
     for (const c of p.colorways) {
       const images = ['front', 'side', 'back'].map((a) => c.angles[a]).filter(Boolean);
       docs.push({
-        name: `${p.name} - ${c.name}`,
+        // must match NewDropShowcase's dbName: include the sleeve/style variant
+        name: c.variant ? `${p.name} (${c.variant}) - ${c.name}` : `${p.name} - ${c.name}`,
         description: p.description,
         price: p.price,
         offerPrice: p.offerPrice,
@@ -99,18 +108,26 @@ async function main() {
     return;
   }
 
-  let upserts = 0;
+  let upserts = 0, skipped = 0;
   for (const d of docs) {
-    await Product.findOneAndUpdate(
-      { name: d.name },
-      { $set: d },
-      { upsert: true, new: true, setDefaultsOnInsert: true }
-    );
-    console.log(`  • ${d.name}  [${d.category}]  $${d.offerPrice}  (${d.image.length} img)`);
-    upserts++;
+    if (ONLY_NEW) {
+      const exists = await Product.findOne({ name: d.name }).lean();
+      if (exists) { console.log(`  ↷ skip (exists): ${d.name}`); skipped++; continue; }
+      await Product.create(d);
+      console.log(`  + ${d.name}  [${d.category}]  ₦${d.offerPrice}  (${d.image.length} img)`);
+      upserts++;
+    } else {
+      await Product.findOneAndUpdate(
+        { name: d.name },
+        { $set: d },
+        { upsert: true, new: true, setDefaultsOnInsert: true }
+      );
+      console.log(`  • ${d.name}  [${d.category}]  ₦${d.offerPrice}  (${d.image.length} img)`);
+      upserts++;
+    }
   }
   const total = await Product.countDocuments();
-  console.log(`\n✓ Upserted ${upserts} colorway product(s). Products in DB now: ${total}.`);
+  console.log(`\n✓ ${ONLY_NEW ? 'Inserted' : 'Upserted'} ${upserts} product(s)${skipped ? `, skipped ${skipped} existing` : ''}. Products in DB now: ${total}.`);
   await mongoose.disconnect();
 }
 

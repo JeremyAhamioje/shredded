@@ -1,74 +1,62 @@
 'use client';
-import { useMemo, useState } from 'react';
 import WebGLHoverCard from './WebGLHoverCard';
+import FlipImage from './FlipImage';
 import { SHOWCASE_FX } from './showcaseConfig';
 import { useAppContext } from '@/context/AppContext';
 
-// One product "block": WebGL showcase canvas + color-dupe swatches + info.
-export default function NewDropCard({ product }) {
+// One flat variant = one card (each color, and each sleeve variant, is its own
+// product — matching how they're seeded in the DB). `item` is built by
+// NewDropShowcase from assets/newDrop.js.
+export default function NewDropCard({ item }) {
   const { currency, products, router } = useAppContext();
-  const [ci, setCi] = useState(0);
-  const colorway = product.colorways[ci];
 
-  // route each colorway to its seeded DB product ("<name> - <colorway>")
-  const idByName = useMemo(() => {
-    const m = {};
-    (products || []).forEach((d) => { m[d.name] = d._id; });
-    return m;
-  }, [products]);
+  // route to the seeded DB product (name must match the seed's convention)
   const go = () => {
-    const id = idByName[`${product.name} - ${colorway.name}`];
-    router.push(id ? `/product/${id}` : '/all-products');
+    const match = (products || []).find((d) => d.name === item.dbName);
+    router.push(match ? `/product/${match._id}` : '/all-products');
     scrollTo(0, 0);
   };
 
+  const onSale = item.offerPrice < item.price;
+
   return (
     <div className="group flex flex-col">
-      {/* Showcase block — the tinted lighting/backdrop is drawn inside the canvas.
-          The outer glow lets that colorway light spill past the frame.        */}
       <div
         onClick={go}
         className={`relative aspect-[4/5] w-full overflow-hidden bg-black cursor-pointer transition-all duration-500 ${
           SHOWCASE_FX ? 'border border-gray-800 group-hover:border-gray-600' : ''
         }`}
-        style={SHOWCASE_FX ? { boxShadow: `0 30px 80px -40px ${colorway.hex}, inset 0 0 60px -30px ${colorway.hex}` } : undefined}
+        style={SHOWCASE_FX ? { boxShadow: `0 30px 80px -40px ${item.hex}, inset 0 0 60px -30px ${item.hex}` } : undefined}
       >
-        <WebGLHoverCard angles={colorway.angles} hex={colorway.hex} />
+        {SHOWCASE_FX
+          ? <WebGLHoverCard angles={item.angles} hex={item.hex} />
+          : <FlipImage angles={item.angles} alt={`${item.productName} — ${item.colorway}`} />}
 
-        {product.offerPrice < product.price && (
-          <span className="absolute top-3 right-3 bg-white text-black text-[10px] font-bold tracking-widest uppercase px-2 py-1">
+        {/* sleeve/style variant, e.g. "One Arm" */}
+        {item.variant && (
+          <span className="absolute top-3 left-3 z-10 bg-white text-black text-[10px] font-bold tracking-widest uppercase px-2 py-1">
+            {item.variant}
+          </span>
+        )}
+        {onSale && (
+          <span className="absolute top-3 right-3 z-10 bg-black/70 text-white text-[10px] font-bold tracking-widest uppercase px-2 py-1 border border-white/25">
             Drop
           </span>
         )}
       </div>
 
-      {/* Color dupes */}
-      <div className="mt-4 flex items-center gap-2">
-        {product.colorways.map((c, i) => (
-          <button
-            key={c.name}
-            onClick={() => setCi(i)}
-            aria-label={c.name}
-            title={c.name}
-            className={`w-5 h-5 rounded-full border transition-all ${
-              i === ci ? 'ring-2 ring-white ring-offset-2 ring-offset-black border-transparent' : 'border-white/25 hover:border-white/60'
-            }`}
-            style={{ backgroundColor: c.hex }}
-          />
-        ))}
-        <span className="ml-1 text-[11px] tracking-wider uppercase text-gray-500">{colorway.name}</span>
-      </div>
-
       {/* Info */}
-      <div className="mt-2 cursor-pointer" onClick={go}>
+      <div className="mt-3 cursor-pointer" onClick={go}>
         <p className="text-sm md:text-base font-semibold tracking-wide uppercase text-white truncate">
-          {product.name}
+          {item.productName}
         </p>
-        <p className="text-xs text-gray-500 truncate">{product.description}</p>
+        <p className="text-[11px] tracking-wider uppercase text-gray-500 truncate">
+          {item.colorway}{item.variant ? ` · ${item.variant}` : ''}
+        </p>
         <div className="mt-2 flex items-center gap-3">
-          <span className="text-lg font-bold text-white">{currency}{product.offerPrice.toLocaleString()}</span>
-          {product.offerPrice < product.price && (
-            <span className="text-sm text-red-500 line-through">{currency}{product.price.toLocaleString()}</span>
+          <span className="text-lg font-bold text-white">{currency}{item.offerPrice.toLocaleString()}</span>
+          {onSale && (
+            <span className="text-sm text-red-500 line-through">{currency}{item.price.toLocaleString()}</span>
           )}
         </div>
       </div>

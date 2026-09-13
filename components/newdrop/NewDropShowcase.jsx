@@ -4,10 +4,45 @@ import NewDropCard from './NewDropCard';
 import { SHOWCASE_FX } from './showcaseConfig';
 import { newDrop, newDropMeta } from '@/assets/newDrop';
 
+// Flatten product × colorway (× variant) into one card each — "each color is its
+// own product". `dbName` must match scripts/seedNewDropProducts.mjs so clicks route.
+function flatten(products) {
+  return products.flatMap((p) =>
+    p.colorways.map((c) => ({
+      key: `${p.slug}__${c.name}${c.variant ? '__' + c.variant : ''}`,
+      productName: p.name,
+      colorway: c.name,
+      variant: c.variant || null, // e.g. "One Arm" — shown as a badge
+      hex: c.hex,
+      angles: c.angles,
+      price: p.price,
+      offerPrice: p.offerPrice,
+      dbName: c.variant ? `${p.name} (${c.variant}) - ${c.name}` : `${p.name} - ${c.name}`,
+    }))
+  );
+}
+
+// Curated line-up for the home teaser (by dbName), in display order. The full
+// /new-drop page still shows everything.
+const HOME_FEATURED = [
+  'Flare Jumpsuit - Black',
+  'Ribbed Long-Sleeve Set - Mauve',
+  'Wide-Leg Sweatpants - Grey',
+  'Leopard Seamless Set - Burgundy',
+];
+
 // The New Drop section. Used full on /new-drop, and as a teaser on the home page
-// (pass `limit` to cap products and `showViewAll` to append a "View all" CTA).
+// (pass `showViewAll` for the curated teaser + a "View all" CTA; `limit` caps it).
 export default function NewDropShowcase({ limit, showViewAll = false }) {
-  const items = typeof limit === 'number' ? newDrop.slice(0, limit) : newDrop;
+  const all = flatten(newDrop);
+  let items;
+  if (showViewAll) {
+    const byName = new Map(all.map((i) => [i.dbName, i]));
+    const featured = HOME_FEATURED.map((n) => byName.get(n)).filter(Boolean);
+    items = featured.slice(0, limit ?? featured.length);
+  } else {
+    items = typeof limit === 'number' ? all.slice(0, limit) : all;
+  }
   const Heading = showViewAll ? 'h2' : 'h1'; // teaser is a section (h2); full page is h1
 
   return (
@@ -31,8 +66,8 @@ export default function NewDropShowcase({ limit, showViewAll = false }) {
         </div>
 
         <div className={`grid grid-cols-1 sm:grid-cols-2 ${showViewAll ? 'lg:grid-cols-4' : 'lg:grid-cols-3'} gap-x-8 gap-y-14 mt-12 ${showViewAll ? 'pb-10' : 'pb-16 md:pb-24'}`}>
-          {items.map((product) => (
-            <NewDropCard key={product.slug} product={product} />
+          {items.map((item) => (
+            <NewDropCard key={item.key} item={item} />
           ))}
         </div>
 

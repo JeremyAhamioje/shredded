@@ -39,3 +39,4 @@ newdrop-src/*.jpeg
 # heavy raw photoshoot sources (compressed + uploaded to Cloudinary by scripts/uploadPhotoshoot.mjs)
 Mobile Devices/
 new images no bg/
+new products/
