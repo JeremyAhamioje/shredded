@@ -1,17 +1,29 @@
 'use client';
 import { useState } from 'react';
 
-// Front <-> back image switcher for the New Drop cards (plain-image path, i.e.
-// SHOWCASE_FX off). Fixes the "back/front images are useless" problem:
-//   • Desktop: hover reveals the back (or side, if there's no dedicated back).
-//   • Mobile:  no hover exists, so an explicit "Back/Front" pill toggles it on tap.
-// The pill stops propagation so it never triggers the card's navigate-on-click.
+// Front <-> back/side image switcher for the New Drop cards (plain-image path,
+// i.e. SHOWCASE_FX off).
+//   • Default shows the FRONT (rest) image.
+//   • Desktop: hover reveals the other angle. Mobile: the pill toggles it on tap.
+//   • The pill is a caption for the angle CURRENTLY shown (Front / Side / Back),
+//     so it always matches the visible image.
+const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
 export default function FlipImage({ angles = {}, alt = '' }) {
-  const front = angles.front || angles.side || angles.back;
-  const back = angles.back || angles.side || null; // second angle to reveal
+  // rest = front if present; reveal = back, else side (the other angle to flip to)
+  const restKey = angles.front ? 'front' : angles.side ? 'side' : 'back';
+  const revealKey = angles.back && restKey !== 'back'
+    ? 'back'
+    : angles.side && restKey !== 'side'
+    ? 'side'
+    : null;
+  const restImg = angles[restKey];
+  const revealImg = revealKey ? angles[revealKey] : null;
+
   const [hover, setHover] = useState(false);
   const [flipped, setFlipped] = useState(false);
-  const showingBack = !!back && (hover || flipped);
+  const showingReveal = !!revealImg && (hover || flipped);
+  const currentKey = showingReveal ? revealKey : restKey;
 
   return (
     <div
@@ -21,32 +33,32 @@ export default function FlipImage({ angles = {}, alt = '' }) {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={front}
+        src={restImg}
         alt={alt}
         loading="lazy"
         className="absolute inset-0 w-full h-full object-contain p-3 transition-opacity duration-500"
-        style={{ opacity: showingBack ? 0 : 1 }}
+        style={{ opacity: showingReveal ? 0 : 1 }}
       />
-      {back && (
+      {revealImg && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={back}
+          src={revealImg}
           alt=""
           loading="lazy"
           aria-hidden
           className="absolute inset-0 w-full h-full object-contain p-3 transition-opacity duration-500"
-          style={{ opacity: showingBack ? 1 : 0 }}
+          style={{ opacity: showingReveal ? 1 : 0 }}
         />
       )}
 
-      {back && (
+      {revealImg && (
         <button
           type="button"
           onClick={(e) => { e.stopPropagation(); setFlipped((f) => !f); }}
-          aria-label={showingBack ? 'Show front' : 'Show back'}
+          aria-label={`Showing ${currentKey} — tap to flip`}
           className="absolute bottom-2 right-2 z-10 px-2.5 py-1 text-[10px] font-semibold tracking-widest uppercase bg-black/60 text-white border border-white/25 backdrop-blur-sm hover:bg-white hover:text-black transition-colors duration-300"
         >
-          {showingBack ? 'Front' : 'Back'}
+          {cap(currentKey)}
         </button>
       )}
     </div>
