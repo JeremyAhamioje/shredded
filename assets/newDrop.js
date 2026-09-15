@@ -34,8 +34,8 @@ export const newDrop = [
         "name": "Crimson",
         "hex": "#8f1f24",
         "angles": {
-          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893141/quickcart/newdrop/compression-longsleeve__crimson__front.png",
-          "side": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893142/quickcart/newdrop/compression-longsleeve__crimson__side.png"
+          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893142/quickcart/newdrop/compression-longsleeve__crimson__side.png",
+          "side": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893141/quickcart/newdrop/compression-longsleeve__crimson__front.png"
         }
       }
     ]
@@ -68,8 +68,8 @@ export const newDrop = [
         "name": "Crimson",
         "hex": "#8f1f24",
         "angles": {
-          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893153/quickcart/newdrop/quarter-zip-longsleeve__crimson__front.png",
-          "side": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893154/quickcart/newdrop/quarter-zip-longsleeve__crimson__side.png"
+          "front": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893154/quickcart/newdrop/quarter-zip-longsleeve__crimson__side.png",
+          "side": "https://res.cloudinary.com/dz6kxumoo/image/upload/v1783893153/quickcart/newdrop/quarter-zip-longsleeve__crimson__front.png"
         }
       }
     ]

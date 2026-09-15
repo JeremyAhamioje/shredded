@@ -9,12 +9,8 @@ const OUT = path.join(ROOT, 'assets', 'newDrop.js');
 
 // [slug, colorway name, angleA, angleB] — swaps the two URLs
 const SWAPS = [
-  ['leopard-set', 'Burgundy', 'front', 'back'],
-  ['compression-longsleeve', 'White', 'front', 'back'],
-  ['compression-longsleeve', 'Black', 'front', 'side'],
-  ['shredded-ls-set', 'Black', 'front', 'back'],
-  ['contrast-shorts', 'Black', 'front', 'back'],
-  ['piped-set', 'Red', 'front', 'back'],
+  ['compression-longsleeve', 'Crimson', 'front', 'side'],
+  ['quarter-zip-longsleeve', 'Crimson', 'front', 'side'],
 ];
 
 const txt = fs.readFileSync(OUT, 'utf8');

@@ -15,6 +15,7 @@ const ProductList = () => {
     const [editingId, setEditingId] = useState(null);
     const [editValues, setEditValues] = useState({ price: "", offerPrice: "" });
     const [saving, setSaving] = useState(false);
+    const [deleteTarget, setDeleteTarget] = useState(null);
 
     // Fetches all products from MongoDB - seller-only route
     const fetchSellerProduct = async () => {
@@ -76,6 +77,8 @@ const ProductList = () => {
             }
         } catch (error) {
             toast.error(error.message);
+        } finally {
+            setDeleteTarget(null);
         }
     };
 
@@ -165,7 +168,7 @@ const ProductList = () => {
                                                                 <Image className="h-3.5 w-3.5 brightness-0 invert" src={assets.redirect_icon} alt="visit" />
                                                                 <span className="hidden md:block">Visit</span>
                                                             </button>
-                                                            <button onClick={() => handleDelete(product._id)} title="Delete"
+                                                            <button onClick={() => setDeleteTarget(product)} title="Delete"
                                                                 className={`${iconBtn} bg-red-600 hover:bg-red-700`}>
                                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -184,6 +187,30 @@ const ProductList = () => {
                     </div>
                 </div>
             )}
+
+            {deleteTarget && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+                    onClick={() => setDeleteTarget(null)}>
+                    <div className="w-full max-w-sm bg-gray-900 border border-gray-700 rounded-lg p-6"
+                        onClick={(e) => e.stopPropagation()}>
+                        <h3 className="text-lg font-medium text-white">Delete product?</h3>
+                        <p className="mt-2 text-sm text-gray-400 break-words">
+                            &ldquo;{deleteTarget.name}&rdquo; will be permanently removed. This can&apos;t be undone.
+                        </p>
+                        <div className="mt-6 flex justify-end gap-3">
+                            <button onClick={() => setDeleteTarget(null)}
+                                className="px-4 py-2 text-sm rounded-md bg-gray-700 text-white hover:bg-gray-600">
+                                Cancel
+                            </button>
+                            <button onClick={() => handleDelete(deleteTarget._id)}
+                                className="px-4 py-2 text-sm rounded-md bg-red-600 text-white hover:bg-red-700">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <Footer />
         </div>
     );
