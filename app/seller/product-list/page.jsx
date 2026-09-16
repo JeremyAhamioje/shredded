@@ -155,8 +155,8 @@ const ProductList = () => {
                                                     {editing ? (
                                                         <>
                                                             <button onClick={() => handleSave(product._id)} disabled={saving}
-                                                                className={`${iconBtn} bg-white text-black disabled:opacity-60`}>
-                                                                {saving ? "…" : "Save"}
+                                                                className={`${iconBtn} bg-green-600 hover:bg-green-700 text-white disabled:opacity-60`}>
+                                                                {saving ? "Saving…" : "Save"}
                                                             </button>
                                                             <button onClick={() => setEditingId(null)} disabled={saving}
                                                                 className={`${iconBtn} bg-gray-700`}>Cancel</button>

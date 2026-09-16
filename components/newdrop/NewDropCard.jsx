@@ -10,9 +10,11 @@ import { useAppContext } from '@/context/AppContext';
 export default function NewDropCard({ item }) {
   const { currency, products, router } = useAppContext();
 
-  // Matched DB product (by seed name) — the single source of truth for id + price,
-  // so seller edits show here. Falls back to the static values until the DB loads.
-  const match = (products || []).find((d) => d.name === item.dbName);
+  // Matched DB product — the single source of truth for id + price, so seller
+  // edits (incl. renames) show here. Link by stable sku; fall back to name for
+  // any product seeded before sku existed.
+  const match = (products || []).find((d) => d.skus?.includes(item.sku))
+    || (products || []).find((d) => d.name === item.dbName);
   const offerPrice = match?.offerPrice ?? item.offerPrice;
   const price = match?.price ?? item.price;
 

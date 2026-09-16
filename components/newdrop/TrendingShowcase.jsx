@@ -4,6 +4,7 @@ import Link from 'next/link';
 import WebGLCycleCard from './WebGLCycleCard';
 import { SHOWCASE_FX } from './showcaseConfig';
 import { trending } from '@/assets/photoshoot';
+import { trendingSku } from '@/lib/sku';
 import { useAppContext } from '@/context/AppContext';
 
 // "Trending" — studio photoshoot cutouts in the WebGL showcase, cycling through
@@ -12,12 +13,16 @@ import { useAppContext } from '@/context/AppContext';
 // matched by "<name> - <tag>"; falls back to the gender page until DB loads.
 export default function TrendingShowcase() {
   const { currency, products } = useAppContext();
-  const dbByName = useMemo(() => {
-    const m = {};
-    (products || []).forEach((d) => { m[d.name] = d; });
-    return m;
+  const { bySku, byName } = useMemo(() => {
+    const bySku = {}, byName = {};
+    (products || []).forEach((d) => {
+      (d.skus || []).forEach((s) => { bySku[s] = d; });
+      byName[d.name] = d;
+    });
+    return { bySku, byName };
   }, [products]);
-  const docFor = (p) => dbByName[`${p.name} - ${p.tag}`];
+  // Link by stable sku; fall back to name for products seeded before sku existed.
+  const docFor = (p) => bySku[trendingSku(p.slug)] || byName[`${p.name} - ${p.tag}`];
   const hrefFor = (p) => {
     const doc = docFor(p);
     return doc ? `/product/${doc._id}` : `/${p.gender}`;

@@ -16,6 +16,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import mongoose from 'mongoose';
+import { newDropSku } from '../lib/sku.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -60,6 +61,7 @@ const CATEGORY = {
 
 const productSchema = new mongoose.Schema({
   name: { type: String, required: true },
+  skus: { type: [String], index: true, default: undefined },
   description: { type: String, required: true },
   price: { type: Number, required: true },
   offerPrice: { type: Number, required: true },
@@ -79,6 +81,7 @@ function buildDocs(newDrop) {
       docs.push({
         // must match NewDropShowcase's dbName: include the sleeve/style variant
         name: c.variant ? `${p.name} (${c.variant}) - ${c.name}` : `${p.name} - ${c.name}`,
+        _sku: newDropSku(p.slug, c.name, c.variant),
         description: p.description,
         price: p.price,
         offerPrice: p.offerPrice,
@@ -109,17 +112,18 @@ async function main() {
   }
 
   let upserts = 0, skipped = 0;
-  for (const d of docs) {
+  for (const raw of docs) {
+    const { _sku, ...d } = raw;
     if (ONLY_NEW) {
       const exists = await Product.findOne({ name: d.name }).lean();
       if (exists) { console.log(`  ↷ skip (exists): ${d.name}`); skipped++; continue; }
-      await Product.create(d);
+      await Product.create({ ...d, skus: [_sku] });
       console.log(`  + ${d.name}  [${d.category}]  ₦${d.offerPrice}  (${d.image.length} img)`);
       upserts++;
     } else {
       await Product.findOneAndUpdate(
         { name: d.name },
-        { $set: d },
+        { $set: d, $addToSet: { skus: _sku } },
         { upsert: true, new: true, setDefaultsOnInsert: true }
       );
       console.log(`  • ${d.name}  [${d.category}]  ₦${d.offerPrice}  (${d.image.length} img)`);

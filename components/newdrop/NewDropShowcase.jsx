@@ -3,6 +3,7 @@ import Link from 'next/link';
 import NewDropCard from './NewDropCard';
 import { SHOWCASE_FX } from './showcaseConfig';
 import { newDrop, newDropMeta } from '@/assets/newDrop';
+import { newDropSku } from '@/lib/sku';
 
 // Flatten product × colorway (× variant) into one card each — "each color is its
 // own product". `dbName` must match scripts/seedNewDropProducts.mjs so clicks route.
@@ -10,6 +11,7 @@ function flatten(products) {
   return products.flatMap((p) =>
     p.colorways.map((c) => ({
       key: `${p.slug}__${c.name}${c.variant ? '__' + c.variant : ''}`,
+      sku: newDropSku(p.slug, c.name, c.variant),
       productName: p.name,
       colorway: c.name,
       variant: c.variant || null, // e.g. "One Arm" — shown as a badge

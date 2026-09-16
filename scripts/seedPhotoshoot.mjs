@@ -15,6 +15,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import mongoose from 'mongoose';
+import { trendingSku } from '../lib/sku.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -50,6 +51,7 @@ const CATEGORY = {
 
 const productSchema = new mongoose.Schema({
   name: { type: String, required: true },
+  skus: { type: [String], index: true, default: undefined },
   description: { type: String, required: true },
   price: { type: Number, required: true },
   offerPrice: { type: Number, required: true },
@@ -62,6 +64,7 @@ const Product = mongoose.models.Product || mongoose.model('Product', productSche
 function buildDocs(trending) {
   return trending.map((p) => ({
     name: `${p.name} - ${p.tag}`,
+    _sku: trendingSku(p.slug),
     description: `${p.name} in ${p.tag}. ${p.gender === 'women' ? "Women's" : "Men's"} studio drop — engineered fit, premium performance fabric.`,
     price: p.price,
     offerPrice: p.offerPrice,
@@ -88,8 +91,9 @@ async function main() {
 
   let n = 0;
   for (const d of docs) {
-    await Product.findOneAndUpdate({ name: d.name }, { $set: d }, { upsert: true, new: true, setDefaultsOnInsert: true });
-    console.log(`  • ${d.name}  [${d.category}]  $${d.offerPrice}  (${d.image.length} img)`);
+    const { _sku, ...doc } = d;
+    await Product.findOneAndUpdate({ name: doc.name }, { $set: doc, $addToSet: { skus: _sku } }, { upsert: true, new: true, setDefaultsOnInsert: true });
+    console.log(`  • ${doc.name}  [${doc.category}]  ₦${doc.offerPrice}  (${doc.image.length} img)`);
     n++;
   }
   console.log(`\n✓ Upserted ${n} product(s). Products in DB now: ${await Product.countDocuments()}.`);
