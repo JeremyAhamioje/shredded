@@ -18,6 +18,17 @@ export default function NewDropCard({ item }) {
   const offerPrice = match?.offerPrice ?? item.offerPrice;
   const price = match?.price ?? item.price;
 
+  // Display name from the DB so renames show here. Split "<name> - <color>" back
+  // into the card's title + colorway lines; fall back to the static values.
+  let titleName = item.productName;
+  let subLabel = item.colorway;
+  if (match?.name) {
+    const i = match.name.lastIndexOf(' - ');
+    if (i > 0) { titleName = match.name.slice(0, i); subLabel = match.name.slice(i + 3); }
+    else { titleName = match.name; subLabel = ''; }
+  }
+  const subtitle = [subLabel, item.variant].filter(Boolean).join(' · ');
+
   const go = () => {
     router.push(match ? `/product/${match._id}` : '/all-products');
     scrollTo(0, 0);
@@ -54,11 +65,13 @@ export default function NewDropCard({ item }) {
       {/* Info */}
       <div className="mt-3 cursor-pointer" onClick={go}>
         <p className="text-sm md:text-base font-semibold tracking-wide uppercase text-white truncate">
-          {item.productName}
+          {titleName}
         </p>
-        <p className="text-[11px] tracking-wider uppercase text-gray-500 truncate">
-          {item.colorway}{item.variant ? ` · ${item.variant}` : ''}
-        </p>
+        {subtitle && (
+          <p className="text-[11px] tracking-wider uppercase text-gray-500 truncate">
+            {subtitle}
+          </p>
+        )}
         <div className="mt-2 flex items-center gap-3">
           <span className="text-lg font-bold text-white">{currency}{offerPrice.toLocaleString()}</span>
           {onSale && (

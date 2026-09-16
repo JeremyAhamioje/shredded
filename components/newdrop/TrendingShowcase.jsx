@@ -48,6 +48,13 @@ export default function TrendingShowcase() {
           const doc = docFor(p);
           const offerPrice = doc?.offerPrice ?? p.offerPrice;
           const price = doc?.price ?? p.price;
+          // Name from the DB so renames show here; split "<name> - <tag>".
+          let title = p.name, tagLabel = p.tag;
+          if (doc?.name) {
+            const i = doc.name.lastIndexOf(' - ');
+            if (i > 0) { title = doc.name.slice(0, i); tagLabel = doc.name.slice(i + 3); }
+            else { title = doc.name; tagLabel = ''; }
+          }
           return (
             <Link key={p.slug} href={hrefFor(p)} className="group flex flex-col items-start gap-1 w-full cursor-pointer">
               <div className={`relative bg-black w-full h-72 md:h-80 overflow-hidden transition-all duration-300 ${
@@ -56,8 +63,8 @@ export default function TrendingShowcase() {
                 <WebGLCycleCard images={p.images} hex={p.hex} />
               </div>
               <div className="flex flex-col gap-1 w-full mt-3">
-                <p className="text-sm md:text-base font-semibold tracking-wide uppercase text-white w-full truncate">{p.name}</p>
-                <p className="text-xs text-gray-500 uppercase tracking-wider">{p.tag}</p>
+                <p className="text-sm md:text-base font-semibold tracking-wide uppercase text-white w-full truncate">{title}</p>
+                {tagLabel && <p className="text-xs text-gray-500 uppercase tracking-wider">{tagLabel}</p>}
                 <div className="flex items-center gap-2 mt-1">
                   <p className="text-lg md:text-xl font-bold text-white tracking-wide">{currency}{offerPrice.toLocaleString()}</p>
                   {offerPrice < price && (
