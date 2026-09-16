@@ -10,14 +10,18 @@ import { useAppContext } from '@/context/AppContext';
 export default function NewDropCard({ item }) {
   const { currency, products, router } = useAppContext();
 
-  // route to the seeded DB product (name must match the seed's convention)
+  // Matched DB product (by seed name) — the single source of truth for id + price,
+  // so seller edits show here. Falls back to the static values until the DB loads.
+  const match = (products || []).find((d) => d.name === item.dbName);
+  const offerPrice = match?.offerPrice ?? item.offerPrice;
+  const price = match?.price ?? item.price;
+
   const go = () => {
-    const match = (products || []).find((d) => d.name === item.dbName);
     router.push(match ? `/product/${match._id}` : '/all-products');
     scrollTo(0, 0);
   };
 
-  const onSale = item.offerPrice < item.price;
+  const onSale = offerPrice < price;
 
   return (
     <div className="group flex flex-col">
@@ -54,9 +58,9 @@ export default function NewDropCard({ item }) {
           {item.colorway}{item.variant ? ` · ${item.variant}` : ''}
         </p>
         <div className="mt-2 flex items-center gap-3">
-          <span className="text-lg font-bold text-white">{currency}{item.offerPrice.toLocaleString()}</span>
+          <span className="text-lg font-bold text-white">{currency}{offerPrice.toLocaleString()}</span>
           {onSale && (
-            <span className="text-sm text-red-500 line-through">{currency}{item.price.toLocaleString()}</span>
+            <span className="text-sm text-red-500 line-through">{currency}{price.toLocaleString()}</span>
           )}
         </div>
       </div>

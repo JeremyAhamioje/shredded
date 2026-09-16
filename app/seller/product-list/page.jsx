@@ -13,7 +13,7 @@ const ProductList = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [editingId, setEditingId] = useState(null);
-    const [editValues, setEditValues] = useState({ price: "", offerPrice: "" });
+    const [editValues, setEditValues] = useState({ name: "", price: "", offerPrice: "" });
     const [saving, setSaving] = useState(false);
     const [deleteTarget, setDeleteTarget] = useState(null);
 
@@ -37,22 +37,23 @@ const ProductList = () => {
 
     const startEdit = (product) => {
         setEditingId(product._id);
-        setEditValues({ price: product.price, offerPrice: product.offerPrice });
+        setEditValues({ name: product.name, price: product.price, offerPrice: product.offerPrice });
     };
 
     const handleSave = async (productId) => {
+        if (!String(editValues.name).trim()) return toast.error("Name can't be empty");
         setSaving(true);
         try {
             const token = await getToken();
             const { data } = await axios.post("/api/product/update",
-                { productId, price: Number(editValues.price), offerPrice: Number(editValues.offerPrice) },
+                { productId, name: editValues.name, price: Number(editValues.price), offerPrice: Number(editValues.offerPrice) },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             if (data.success) {
                 setProducts((prev) => prev.map((p) =>
-                    p._id === productId ? { ...p, price: data.product.price, offerPrice: data.product.offerPrice } : p));
+                    p._id === productId ? { ...p, name: data.product.name, price: data.product.price, offerPrice: data.product.offerPrice } : p));
                 setEditingId(null);
-                toast.success("Price updated");
+                toast.success("Product updated");
             } else {
                 toast.error(data.message);
             }
@@ -114,7 +115,13 @@ const ProductList = () => {
                                                         <Image src={product.image[0]} alt={product.name}
                                                             className="w-12 h-12 object-contain" width={48} height={48} />
                                                     </div>
-                                                    <span className="line-clamp-2 max-w-[9rem] md:max-w-none">{product.name}</span>
+                                                    {editing ? (
+                                                        <input type="text" value={editValues.name}
+                                                            onChange={(e) => setEditValues((v) => ({ ...v, name: e.target.value }))}
+                                                            className="w-40 md:w-64 bg-gray-800 border border-gray-600 rounded px-2 py-1 text-white" />
+                                                    ) : (
+                                                        <span className="line-clamp-2 max-w-[9rem] md:max-w-none">{product.name}</span>
+                                                    )}
                                                 </div>
                                             </td>
                                             <td className="px-4 py-3 max-sm:hidden">{product.category}</td>

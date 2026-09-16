@@ -12,14 +12,15 @@ import { useAppContext } from '@/context/AppContext';
 // matched by "<name> - <tag>"; falls back to the gender page until DB loads.
 export default function TrendingShowcase() {
   const { currency, products } = useAppContext();
-  const idByName = useMemo(() => {
+  const dbByName = useMemo(() => {
     const m = {};
-    (products || []).forEach((d) => { m[d.name] = d._id; });
+    (products || []).forEach((d) => { m[d.name] = d; });
     return m;
   }, [products]);
+  const docFor = (p) => dbByName[`${p.name} - ${p.tag}`];
   const hrefFor = (p) => {
-    const id = idByName[`${p.name} - ${p.tag}`];
-    return id ? `/product/${id}` : `/${p.gender}`;
+    const doc = docFor(p);
+    return doc ? `/product/${doc._id}` : `/${p.gender}`;
   };
   if (!trending?.length) return null;
 
@@ -38,23 +39,30 @@ export default function TrendingShowcase() {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12 mt-12 pb-16 md:pb-24">
-        {trending.map((p) => (
-          <Link key={p.slug} href={hrefFor(p)} className="group flex flex-col items-start gap-1 w-full cursor-pointer">
-            <div className={`relative bg-black w-full h-72 md:h-80 overflow-hidden transition-all duration-300 ${
-              SHOWCASE_FX ? 'border border-gray-800 group-hover:border-gray-600' : ''
-            }`}>
-              <WebGLCycleCard images={p.images} hex={p.hex} />
-            </div>
-            <div className="flex flex-col gap-1 w-full mt-3">
-              <p className="text-sm md:text-base font-semibold tracking-wide uppercase text-white w-full truncate">{p.name}</p>
-              <p className="text-xs text-gray-500 uppercase tracking-wider">{p.tag}</p>
-              <div className="flex items-center gap-2 mt-1">
-                <p className="text-lg md:text-xl font-bold text-white tracking-wide">{currency}{p.offerPrice.toLocaleString()}</p>
-                <p className="text-sm text-red-500 line-through">{currency}{p.price.toLocaleString()}</p>
+        {trending.map((p) => {
+          const doc = docFor(p);
+          const offerPrice = doc?.offerPrice ?? p.offerPrice;
+          const price = doc?.price ?? p.price;
+          return (
+            <Link key={p.slug} href={hrefFor(p)} className="group flex flex-col items-start gap-1 w-full cursor-pointer">
+              <div className={`relative bg-black w-full h-72 md:h-80 overflow-hidden transition-all duration-300 ${
+                SHOWCASE_FX ? 'border border-gray-800 group-hover:border-gray-600' : ''
+              }`}>
+                <WebGLCycleCard images={p.images} hex={p.hex} />
               </div>
-            </div>
-          </Link>
-        ))}
+              <div className="flex flex-col gap-1 w-full mt-3">
+                <p className="text-sm md:text-base font-semibold tracking-wide uppercase text-white w-full truncate">{p.name}</p>
+                <p className="text-xs text-gray-500 uppercase tracking-wider">{p.tag}</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <p className="text-lg md:text-xl font-bold text-white tracking-wide">{currency}{offerPrice.toLocaleString()}</p>
+                  {offerPrice < price && (
+                    <p className="text-sm text-red-500 line-through">{currency}{price.toLocaleString()}</p>
+                  )}
+                </div>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </section>
   );
