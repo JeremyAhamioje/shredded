@@ -99,7 +99,7 @@ export const trending = [
     "price": 45000,
     "offerPrice": 38000,
     "images": [
-      "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785122436/quickcart/photoshoot/IMG_3107.png"
+      "https://res.cloudinary.com/dz6kxumoo/image/upload/v1790106785/quickcart/products/shredded-shorts-black.png"
     ]
   },
   {
@@ -177,8 +177,8 @@ export const trending = [
     "price": 55000,
     "offerPrice": 45000,
     "images": [
-      "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119049/quickcart/photoshoot/IMG_3110.png",
-      "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785119050/quickcart/photoshoot/IMG_3111.png"
+      "https://res.cloudinary.com/dz6kxumoo/image/upload/e_gen_remove:prompt_shoes;multiple_true/f_auto,q_auto:best/v1785119049/quickcart/photoshoot/IMG_3110.png",
+      "https://res.cloudinary.com/dz6kxumoo/image/upload/c_crop,g_north,h_0.91/f_auto,q_auto:best/v1785119050/quickcart/photoshoot/IMG_3111.png"
     ]
   },
   {
@@ -203,7 +203,7 @@ export const trending = [
     "price": 55000,
     "offerPrice": 45000,
     "images": [
-      "https://res.cloudinary.com/dz6kxumoo/image/upload/f_auto,q_auto:best/v1785122455/quickcart/photoshoot/IMG_3109.png"
+      "https://res.cloudinary.com/dz6kxumoo/image/upload/c_crop,g_north,h_0.87/f_auto,q_auto:best/v1785122455/quickcart/photoshoot/IMG_3109.png"
     ]
   }
 ];
