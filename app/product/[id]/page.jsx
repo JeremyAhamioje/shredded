@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import Loading from "@/components/Loading";
 import { useAppContext } from "@/context/AppContext";
+import { colorSiblings, variantInfo } from "@/lib/productGroups";
 import React from "react";
 
 const Product = () => {
@@ -27,6 +28,10 @@ const Product = () => {
     useEffect(() => {
         fetchProductData();
     }, [id, products.length])
+
+    // Colour family: sibling products (same item, other colours) + this one's colour
+    const siblings = colorSiblings(productData, products);
+    const currentColor = variantInfo(productData)?.color;
 
     return productData ? (
         <div className="bg-black min-h-screen">
@@ -98,6 +103,39 @@ const Product = () => {
                                 {currency}{productData.price.toLocaleString()}
                             </span>
                         </p>
+
+                        {siblings.length > 1 && (
+                            <div className="mt-8">
+                                <p className="text-sm text-gray-400 uppercase tracking-wider">
+                                    Color{currentColor ? <>: <span className="text-white">{currentColor}</span></> : null}
+                                </p>
+                                <div className="mt-3 flex flex-wrap gap-3">
+                                    {siblings.map(({ product, color }) => {
+                                        const active = product._id === productData._id;
+                                        return (
+                                            <button
+                                                key={product._id}
+                                                type="button"
+                                                title={color}
+                                                onClick={() => { if (!active) { router.push(`/product/${product._id}`); scrollTo(0, 0); } }}
+                                                className="flex flex-col items-center gap-1.5 w-16"
+                                            >
+                                                <span className={`w-16 h-16 overflow-hidden bg-gray-900 border transition-colors ${
+                                                    active ? 'border-white' : 'border-gray-700 hover:border-gray-400'
+                                                }`}>
+                                                    <Image src={product.image[0]} alt={color} width={64} height={64}
+                                                        className="w-full h-full object-contain p-1" unoptimized />
+                                                </span>
+                                                <span className={`text-[10px] uppercase tracking-wider text-center ${active ? 'text-white' : 'text-gray-500'}`}>
+                                                    {color}
+                                                </span>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        )}
+
                         <hr className="border-gray-800 my-8" />
                         <div className="overflow-x-auto">
                             <table className="table-auto border-collapse w-full max-w-md">
@@ -108,7 +146,7 @@ const Product = () => {
                                     </tr>
                                     <tr className="border-b border-gray-800">
                                         <td className="text-gray-400 font-medium py-3 pr-8 uppercase tracking-wider text-sm">Color</td>
-                                        <td className="text-white py-3">Multi</td>
+                                        <td className="text-white py-3">{currentColor || "Multi"}</td>
                                     </tr>
                                     <tr className="border-b border-gray-800">
                                         <td className="text-gray-400 font-medium py-3 pr-8 uppercase tracking-wider text-sm">Category</td>
