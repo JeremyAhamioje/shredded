@@ -27,3 +27,18 @@
   100% { opacity: 0; }
 }
 .like-badge { animation: likecycle 4.5s ease-in-out infinite; will-change: transform, opacity; }
+
+/* fire badge — flickering flame for "selling fast / promoted" products */
+@keyframes fireflicker {
+  0%, 100% { transform: scale(1) rotate(-3deg);   opacity: 1; }
+  20%      { transform: scale(1.18) rotate(3deg);  opacity: 0.85; }
+  40%      { transform: scale(0.92) rotate(-2deg); opacity: 1; }
+  60%      { transform: scale(1.12) rotate(2deg);  opacity: 0.9; }
+  80%      { transform: scale(0.98) rotate(-1deg); opacity: 1; }
+}
+@keyframes fireglow {
+  0%, 100% { box-shadow: 0 0 8px -2px rgba(249,115,22,0.5);  border-color: rgba(249,115,22,0.5); }
+  50%      { box-shadow: 0 0 14px 0px rgba(249,115,22,0.9);  border-color: rgba(249,115,22,0.95); }
+}
+.fire-flicker { display: inline-block; transform-origin: bottom center; animation: fireflicker 0.7s ease-in-out infinite; filter: drop-shadow(0 0 4px rgba(255,120,0,0.85)); }
+.fire-badge   { animation: fireglow 1.4s ease-in-out infinite; }

@@ -7,7 +7,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NewDropShowcase from "@/components/newdrop/NewDropShowcase";
 import FeaturedCategories from "@/components/newdrop/FeaturedCategories";
-import TrendingShowcase from "@/components/newdrop/TrendingShowcase";
+import AllProductsHome from "@/components/AllProductsHome";
+import TrendingNow from "@/components/TrendingNow";
 import FollowSocials from "@/components/FollowSocials";
 
 const Home = () => {
@@ -15,9 +16,10 @@ const Home = () => {
     <div className="bg-black min-h-screen">
       <Navbar/>
       <HeaderSlider />
-      <TrendingShowcase />
       <FeaturedCategories />
       <NewDropShowcase limit={8} showViewAll />
+      <AllProductsHome />
+      <TrendingNow />
       <FollowSocials />
       <div className="px-6 md:px-16 lg:px-32">
         <Banner />
