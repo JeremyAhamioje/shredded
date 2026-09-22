@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import PopularProductCard from '@/components/PopularProductCard';
 import { useAppContext } from '@/context/AppContext';
 
@@ -47,6 +48,13 @@ export default function TrendingNow() {
             <PopularProductCard product={p} />
           </div>
         ))}
+      </div>
+
+      <div className="flex justify-center mt-12">
+        <Link href="/all-products"
+          className="px-10 py-3 text-xs font-semibold tracking-widest uppercase border border-white text-white hover:bg-white hover:text-black transition-all duration-300">
+          View all products
+        </Link>
       </div>
     </section>
   );

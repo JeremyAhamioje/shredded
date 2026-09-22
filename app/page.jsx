@@ -16,9 +16,9 @@ const Home = () => {
     <div className="bg-black min-h-screen">
       <Navbar/>
       <HeaderSlider />
+      <AllProductsHome />
       <FeaturedCategories />
       <NewDropShowcase limit={8} showViewAll />
-      <AllProductsHome />
       <TrendingNow />
       <FollowSocials />
       <div className="px-6 md:px-16 lg:px-32">
