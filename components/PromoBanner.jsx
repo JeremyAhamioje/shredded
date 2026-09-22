@@ -4,7 +4,7 @@ import Image from 'next/image';
 import PopularProductCard from '@/components/PopularProductCard';
 import { useAppContext } from '@/context/AppContext';
 
-const PROMO_IMG_SKU = 'tr-muscle-tank';                       // hero image on the card
+const PROMO_IMG_SKU = 'nd-leopard-set-burgundy';              // full-body model on the card
 const FEATURED_SKUS = ['nd-flare-jumpsuit-red', 'tr-onyx-quarter-zip']; // 2 cards beside it
 
 export default function PromoBanner() {
