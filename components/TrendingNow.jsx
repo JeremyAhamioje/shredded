@@ -3,14 +3,15 @@ import Link from 'next/link';
 import PopularProductCard from '@/components/PopularProductCard';
 import { useAppContext } from '@/context/AppContext';
 
-// Curated "selling fast" picks, by stable sku (survives renames). ~6 products.
+// Curated "selling fast" picks — real-person shots only, balanced men's/women's.
+// By stable sku (survives renames), alternating M/F for a mixed row.
 const TRENDING_SKUS = [
-  'nd-flare-jumpsuit-black',
-  'nd-leopard-set-burgundy',        // "SHREDDED cheetah print set"
-  'nd-piped-set-red',
-  'nd-scrunch-romper-pink',
-  'nd-shredded-ls-set-black',
-  'nd-compression-longsleeve-white',
+  'tr-muscle-tank',            // men's — Sleeveless Muscle Tank
+  'nd-flare-jumpsuit-red',     // women's — Flare Jumpsuit
+  'tr-onyx-quarter-zip',       // men's — Compression Quarter-Zip
+  'nd-scrunch-romper-pink',    // women's — Scrunch Romper
+  'tr-shredded-tee',           // men's — Shredded Graphic Tee
+  'nd-piped-set-red',          // women's — Piped Two-Piece Set
 ];
 
 export default function TrendingNow() {
