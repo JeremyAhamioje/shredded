@@ -64,6 +64,19 @@ const Footer = () => {
             Secure payments powered by Paystack
           </p>
         </div>
+
+        {/* built-by credit */}
+        <p className="pt-4 text-center text-xs text-gray-500">
+          Built with{" "}
+          <svg className="inline-block w-3.5 h-3.5 text-red-500 align-middle -mt-0.5" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="love">
+            <path d="M12 21s-6.716-4.35-9.428-7.062C.86 12.226.86 9.24 2.572 7.53a4.5 4.5 0 016.364 0L12 10.594l3.064-3.064a4.5 4.5 0 116.364 6.364C18.716 16.65 12 21 12 21z" />
+          </svg>{" "}
+          by{" "}
+          <a href="https://jeremybuilds.online" target="_blank" rel="noopener noreferrer"
+            className="text-white font-semibold underline underline-offset-2 hover:text-red-400 transition-colors">
+            Jeremy
+          </a>
+        </p>
       </div>
     </footer>
   );

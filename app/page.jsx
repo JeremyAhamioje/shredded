@@ -9,6 +9,8 @@ import NewDropShowcase from "@/components/newdrop/NewDropShowcase";
 import FeaturedCategories from "@/components/newdrop/FeaturedCategories";
 import AllProductsHome from "@/components/AllProductsHome";
 import TrendingNow from "@/components/TrendingNow";
+import PromoBanner from "@/components/PromoBanner";
+import RecentPurchaseToast from "@/components/RecentPurchaseToast";
 import FollowSocials from "@/components/FollowSocials";
 
 const Home = () => {
@@ -19,6 +21,7 @@ const Home = () => {
       <TrendingNow />
       <NewDropShowcase limit={8} showViewAll />
       <FeaturedCategories />
+      <PromoBanner />
       <AllProductsHome />
       <FollowSocials />
       <div className="px-6 md:px-16 lg:px-32">
@@ -26,6 +29,7 @@ const Home = () => {
         <NewsLetter />
       </div>
       <Footer />
+      <RecentPurchaseToast />
     </div>
   );
 };
