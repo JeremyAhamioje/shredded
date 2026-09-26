@@ -37,8 +37,16 @@ export default function PromoBanner() {
           <p className="mt-3 text-center text-white/60 text-xs">Hurry — limited offer</p>
         </div>
 
-        {/* Featured products */}
-        {featured.map((p) => <PopularProductCard key={p._id} product={p} />)}
+        {/* Featured promo products — red frame + pulsing glow + discount badge */}
+        {featured.map((p) => (
+          <div key={p._id}
+            className="promo-pulse relative flex justify-center rounded-xl border border-red-600/50 bg-gradient-to-b from-red-950/60 via-black to-black p-4 md:p-5">
+            <span className="promo-badge absolute top-4 left-4 z-20 bg-red-600 text-white text-[11px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full shadow-lg">
+              -30%
+            </span>
+            <PopularProductCard product={p} />
+          </div>
+        ))}
       </div>
     </section>
   );
